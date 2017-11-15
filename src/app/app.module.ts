@@ -7,12 +7,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DetalhePage } from '../pages/detalhe/detalhe';
+import { SobrePage } from '../pages/sobre/sobre';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    DetalhePage
+    DetalhePage,
+    SobrePage
   ],
   imports: [
     BrowserModule,
@@ -22,7 +24,8 @@ import { DetalhePage } from '../pages/detalhe/detalhe';
   entryComponents: [
     MyApp,
     HomePage,
-    DetalhePage
+    DetalhePage,
+    SobrePage
   ],
   providers: [
     StatusBar,
