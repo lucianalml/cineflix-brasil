@@ -3,10 +3,7 @@ import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { NavController } from 'ionic-angular';
-
 import { HomePage } from '../pages/home/home';
-import { SobrePage } from '../pages/sobre/sobre';
 
 @Component({
   templateUrl: 'app.html'
@@ -21,11 +18,6 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
-  }
-
-  goToSobre(){
-    // TODO - navegacao do rodapé para pagina sobre
-    // this.navCtrl.push(SobrePage);
   }
 
 }
