@@ -51,7 +51,7 @@
 
         <ion-row text-center>
             <ion-col>
-                <button ion-button icon-right type="submit" color="secondary" (click)="setFilm()">
+                <button ion-button icon-right type="submit" color="secondary" (click)="setFilme()">
           Assistir um filme!
           <ion-icon name="videocam"></ion-icon>
         </button>
@@ -59,11 +59,11 @@
         </ion-row>
     </form>
 
-    <ion-row *ngIf="film && film.Imagem">
+    <ion-row *ngIf="filme && filme.Imagem">
         <ion-col>
             <ion-card (click)="onGoToDetalhe()">
-                <!-- <img [src]="'data:image/jpg;base64,' + film.Imagem" class="img-responsive img-thumbnail" alt="Responsive image"> -->
-                <img src="data:image/*;base64,{{film.Imagem}}" />
+                <!-- <img [src]="'data:image/jpg;base64,' + filme.Imagem" class="img-responsive img-thumbnail" alt="Responsive image"> -->
+                <img src="data:image/*;base64,{{filme.Imagem}}" />
                 <ion-fab right top>
                     <button ion-fab>
               <ion-icon name="pin"></ion-icon>

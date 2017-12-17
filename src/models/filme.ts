@@ -1,4 +1,4 @@
-export class Film {
+export class Filme {
   Id: number;
   Nome: string;
   Url: string;
