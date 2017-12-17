@@ -3,7 +3,7 @@ import { NavController } from "ionic-angular";
 
 import { DetalhePage } from "../detalhe/detalhe";
 
-import { Film } from './../../components/common/Film';
+import { Film } from './../../models/film';
 
 @Component({
   selector: "page-home",

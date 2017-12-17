@@ -1,17 +1,16 @@
-<ion-nav [root]="rootPage"></ion-nav>
+<ion-nav #nav [root]="rootPage"></ion-nav>
 
 <ion-footer>
     <ion-toolbar>
-
         <ion-row>
             <ion-col text-left>
                 <button ion-button clear>
-                        <div>Min. Cultura</div>
-                      </button>
+                    <div>Min. Cultura</div>
+                </button>
             </ion-col>
             <ion-col text-right>
-                <button ion-button clear>
-                  <div>Sobre</div>
+                <button (click)="goToSobre()" ion-button clear>
+                    <div>Sobre</div>
                 </button>
             </ion-col>
         </ion-row>
