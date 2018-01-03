@@ -5,11 +5,14 @@ import { DetalhePage } from "../detalhe/detalhe";
 
 import { Filme } from './../../models/filme';
 
+import { YoutubeService } from '../../services/youtube';
+
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
 })
 export class HomePage {
+
   genero: any;
   detalhePage = DetalhePage;
   filme: Filme;
@@ -23,8 +26,23 @@ export class HomePage {
     { nome: "Terror", id: 5 }
   ];
 
-  constructor(public navCtrl: NavController) {}
+  constructor(public navCtrl: NavController,
+              private youtubeService: YoutubeService) { }
 
+
+    // TESTES - recuperando playlists do canal
+  ionViewWillEnter() {
+    this.youtubeService.fetchPlaylists()
+    .subscribe(
+      (playlists) => {
+        console.log(playlists);
+      },
+      error => {
+        console.log(error.json());
+      }
+    );
+  }
+            
   onGoToDetalhe() {
     this.navCtrl.push(DetalhePage);
   }

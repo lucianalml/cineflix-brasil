@@ -2,36 +2,37 @@ import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
 import 'rxjs/Rx';
 
-import { Filme } from "../models/filme";
+import { Filme } from '../models/filme';
+import { Playlist } from '../models/playlist';
 
 @Injectable()
 export class YoutubeService {
   private filme: Filme;
 
+  private channelId = 'UC2dAdLOJZiQsSFjcTsERsDA';
+  private apiKey = 'AIzaSyBftDhqCdhKRvul673QbydsBPoqwbvBui0';
+
   constructor(private http: Http) {}
 
   getFilme() {
     return this.filme;
+
+    // const userId = this.authService.getActiveUser().uid;
+    // return this.http.get('https://ionic2-recipebook.firebaseio.com/' + userId + '/recipes.json?auth=' + token, this.recipes)
+    //   .map((response: Response) => response.json());
+
   }
 
-  fetchList() {
+  fetchPlaylists() {
 
-    // return this.http.get('https://ionic2-recipebook.firebaseio.com/' + userId + '/recipes.json?auth=' + token)
-    //   .map((response: Response) => {
-    //     const recipes: Recipe[] = response.json() ? response.json() : [];
-    //     for (let item of recipes) {
-    //       if (!item.hasOwnProperty('ingredients')) {
-    //         item.ingredients = [];
-    //       }
-    //     }
-    //     return recipes;
-    //   })
-    //   .do((recipes: Recipe[]) => {
-    //     if (recipes) {
-    //       this.recipes = recipes;
-    //     } else {
-    //       this.recipes = [];
-    //     }
-    //   });
+    return this.http.get('https://www.googleapis.com/youtube/v3/playlists?channelId=' 
+      + this.channelId
+      + '&part=snippet&key=' 
+      + this.apiKey)
+      .map((response: Response) => {
+          return response.json();
+        }
+      );
+
     }
 }
