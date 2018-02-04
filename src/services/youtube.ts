@@ -8,6 +8,7 @@ import { Playlist } from '../models/playlist';
 @Injectable()
 export class YoutubeService {
   private filme: Filme;
+  private playlists: Playlist[];
 
   private channelId = 'UC2dAdLOJZiQsSFjcTsERsDA';
   private apiKey = 'AIzaSyBftDhqCdhKRvul673QbydsBPoqwbvBui0';
@@ -25,14 +26,32 @@ export class YoutubeService {
 
   fetchPlaylists() {
 
-    return this.http.get('https://www.googleapis.com/youtube/v3/playlists?channelId=' 
+    return this.http.get('https://www.googleapis.com/youtube/v3/playlists?channelId='
       + this.channelId
-      + '&part=snippet&key=' 
+      + '&part=snippet&key='
       + this.apiKey)
-      .map((response: Response) => {
-          return response.json();
+      .map(this.extractPlaylists)
+      .do((playlists: Playlist[]) => {
+        if (playlists) {
+          this.playlists = playlists;
+        } else {
+          this.playlists = [];
         }
-      );
-
+      });
     }
+
+    extractPlaylists(response : Response){
+      // let body = response.json();
+      // console.log("Body", body);
+      // return body.data;
+
+      // // const playlists: Playlist[] = response.json() ? response.json() : [];
+
+      if (!response.json()) {
+        return [];
+      }
+      let playlists = response.json().items.map(item => new Playlist(item.id, item.snippet.title));
+
+      return playlists;
+      }
 }

@@ -4,6 +4,7 @@ import { NavController } from "ionic-angular";
 import { DetalhePage } from "../detalhe/detalhe";
 
 import { Filme } from './../../models/filme';
+import { Playlist } from './../../models/playlist';
 
 import { YoutubeService } from '../../services/youtube';
 
@@ -26,6 +27,8 @@ export class HomePage {
     { nome: "Terror", id: 5 }
   ];
 
+  playlists : Playlist[] = [];
+
   constructor(public navCtrl: NavController,
               private youtubeService: YoutubeService) { }
 
@@ -35,14 +38,16 @@ export class HomePage {
     this.youtubeService.fetchPlaylists()
     .subscribe(
       (playlists) => {
-        console.log(playlists);
+        this.playlists = playlists;
+        console.log(this.playlists);
+
       },
       error => {
         console.log(error.json());
       }
     );
   }
-            
+
   onGoToDetalhe() {
     this.navCtrl.push(DetalhePage);
   }
