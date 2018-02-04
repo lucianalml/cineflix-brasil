@@ -67,7 +67,7 @@ export class HomePage {
 
     this.filme = new Filme();
     this.filme.Descricao = randomMovie.description;
-    this.filme.Imagem = randomMovie.thumbnails.default;
+    this.filme.Imagem = randomMovie.thumbnails.high;
     this.filme.DataPublicacao = new Date(randomMovie.publishedAt);
   }
 }
