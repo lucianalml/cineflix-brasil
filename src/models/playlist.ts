@@ -1,8 +1,8 @@
-// import { Filme } from './filme';
+import { PlaylistItem } from './playlistItem';
 
 export class Playlist {
   constructor(public id?: string,
     public title?: string,
-    // itens: PlaylistItems
+    public itens?: PlaylistItem[]
     ) {}
 }

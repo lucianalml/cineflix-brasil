@@ -39,8 +39,13 @@ export class HomePage {
     .subscribe(
       (playlists) => {
         this.playlists = playlists;
-        console.log(this.playlists);
+        // console.log(this.playlists);
 
+        // Recuperando todos os filmes da playlist
+        this.playlists.forEach(playlist => {
+          this.youtubeService.getPlaylistItems(playlist.id)
+            .subscribe(playlistiItem => console.log(playlistiItem));
+        });
       },
       error => {
         console.log(error.json());
