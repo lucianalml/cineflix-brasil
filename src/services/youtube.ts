@@ -72,7 +72,8 @@ export class YoutubeService {
           let playlistItem = new PlaylistItem(item.id,
             item.snippet.title,
             item.snippet.description,
-            thumbnails);
+            thumbnails,
+            item.snippet.publishedAt);
 
           return playlistItem;
         }
