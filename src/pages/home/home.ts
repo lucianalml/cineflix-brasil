@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { NavController } from "ionic-angular";
+import { NavController, AlertController, Platform } from 'ionic-angular';
 
 import { DetalhePage } from "../detalhe/detalhe";
 
@@ -31,8 +31,12 @@ export class HomePage {
   playlists : Playlist[] = [];
   playlistItems : PlaylistItem[];
 
+
   constructor(public navCtrl: NavController,
-              private youtubeService: YoutubeService) { }
+    private alertCtrl: AlertController,
+    private platform: Platform,
+    private youtubeService: YoutubeService) { }
+
 
 
     // TESTES - recuperando playlists do canal
@@ -69,5 +73,15 @@ export class HomePage {
     this.filme.Descricao = randomMovie.description;
     this.filme.Imagem = randomMovie.thumbnails.high;
     this.filme.DataPublicacao = new Date(randomMovie.publishedAt);
+  }
+
+  showPlatform() {
+    let text = 'I run on: ' + this.platform.platforms();
+    let alert = this.alertCtrl.create({
+      title: 'My Home',
+      subTitle: text,
+      buttons: ['Ok']
+    });
+    alert.present();
   }
 }
