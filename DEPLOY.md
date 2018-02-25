@@ -4,9 +4,12 @@
 $ git remote add heroku git@heroku.com:cineflix-brasil.git
 ```
 
-- Executar o script de deploy
+Executar os comandos
 ```sh
-$ ./herokuDeployment.sh
+$ git add .
+$ git commit -am 'HEROKU DEPLOYMENT'
+$ git push heroku master
+$ heroku open
 ```
 
 Verificar: https://cineflix-brasil.herokuapp.com/
