@@ -20,4 +20,7 @@ Executar em localhost
 $ ionic serve
 ```
 
+Deploy pro heroku
+Verificar instruções em [deploy](DEPLOY.md)
+
 
