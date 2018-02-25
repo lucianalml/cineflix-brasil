@@ -11,14 +11,15 @@
     <!-- <button ion-button (click)="showPlatform()">TEste</button> -->
 
     <div class="spacer" style="width:300px;height:60px;" id="restaurantes-spacer2"></div>
-    <form (ngSubmit)="onFind(form)" #form="ngForm" novalidate>
+    <form (ngSubmit)="onAssistirFilme(f)" #f="ngForm" novalidate>
         <ion-row>
             <ion-col>
                 <ion-list>
                     <ion-item>
                         <ion-label>Genêro</ion-label>
-                        <ion-select [(ngModel)]="genero" [ngModelOptions]="{standalone: true}" interface="action-sheet" cancelText="Cancelar" okText="Selecionar">
-                            <ion-option color="primary" *ngFor="let item of generoList" value="{{item.id}}">{{item.nome}}</ion-option>
+                        <ion-select [(ngModel)]="generoSelected" [ngModelOptions]="{standalone: true}" interface="action-sheet" cancelText="Cancelar" okText="Selecionar">
+                            <!-- <ion-option color="primary" *ngFor="let item of generoList; let i = index" value="{{item.id}}" selected="{{(i==0)}}">{{item.nome}}</ion-option> -->
+                            <ion-option color="primary" *ngFor="let item of generoList; let i = index" value="{{item.id}}">{{item.nome}}</ion-option>
                         </ion-select>
                     </ion-item>
                 </ion-list>
@@ -53,7 +54,7 @@
 
         <ion-row text-center>
             <ion-col>
-                <button ion-button icon-right type="submit" color="secondary" (click)="setFilme()">
+                <button ion-button icon-right type="submit" color="secondary">
           Assistir um filme!
           <ion-icon name="videocam"></ion-icon>
         </button>

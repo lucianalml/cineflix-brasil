@@ -40,7 +40,7 @@ export class YoutubeService {
     }
 
     extractPlaylists(response : Response){
-      console.log("Playlists do canal", response.json());
+      // console.log("Playlists do canal", response.json());
       if (!response.json()) {
         return [];
       }

@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { NgForm } from "@angular/forms";
+
 import { NavController, AlertController, Platform } from 'ionic-angular';
 
 import { DetalhePage } from "../detalhe/detalhe";
@@ -9,28 +11,21 @@ import { PlaylistItem } from '../../models/playlistItem';
 
 import { YoutubeService } from '../../services/youtube';
 
+
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
 })
 export class HomePage {
 
-  genero: any;
   detalhePage = DetalhePage;
   filme: Filme;
 
-  generoList = [
-    { nome: "Todos", id: 0 },
-    { nome: "Comédia", id: 1 },
-    { nome: "Família", id: 2 },
-    { nome: "Românce", id: 3 },
-    { nome: "Suspense", id: 4 },
-    { nome: "Terror", id: 5 }
-  ];
+  generoSelected = 'TODOS';
+  generoList = [{ id: 'TODOS', nome: "Todos" }];
 
   playlists : Playlist[] = [];
-  playlistItems : PlaylistItem[];
-
+  playlistItems : PlaylistItem[] = [];
 
   constructor(public navCtrl: NavController,
     private alertCtrl: AlertController,
@@ -38,18 +33,19 @@ export class HomePage {
     private youtubeService: YoutubeService) { }
 
 
-
-    // TESTES - recuperando playlists do canal
   ionViewWillEnter() {
-    this.youtubeService.fetchPlaylists()
-    .subscribe(
-      (playlists) => {
+
+// Recupera playlists do canal
+    this.youtubeService.fetchPlaylists().subscribe((playlists) => {
+
         this.playlists = playlists;
-        // Recuperando todos os filmes da playlist
-        this.playlists.forEach(playlist => {
-          this.youtubeService.getPlaylistItems(playlist.id)
-            .subscribe(playlistItems => this.playlistItems = playlistItems);
-        });
+
+        // Cria lista com gêneros recuperando os títulos das playlists
+        this.generoList = [{ id: 'TODOS', nome: "Todos" }];
+        for (let i = 0; i < this.playlists.length; i++) {
+          this.generoList.push({id: this.playlists[i].id,
+                                nome: this.playlists[i].title });
+        }
       },
       error => {
         console.log(error.json());
@@ -57,24 +53,49 @@ export class HomePage {
     );
   }
 
+  onAssistirFilme(form: NgForm){
+
+    // Fazer a busca em todas as playlists
+    if (this.generoSelected == 'TODOS') {
+
+      // Recupera uma playlist aleatória
+      let randomPlaylist = this.playlists[Math.floor(Math.random() * this.playlists.length)];
+
+      // Recupera um video aleatório
+      this.youtubeService.getPlaylistItems(randomPlaylist.id)
+      .subscribe(playlistItems => {
+        this.playlistItems = playlistItems;
+
+        let randomMovie = this.playlistItems[Math.floor(Math.random() * this.playlistItems.length)];
+
+        this.filme = new Filme();
+        this.filme.Descricao = randomMovie.description;
+        this.filme.Imagem = randomMovie.thumbnails.high;
+        this.filme.DataPublicacao = new Date(randomMovie.publishedAt);
+      });
+
+    } else {
+      // Recupera um video aleatório na playlist selecionada
+          this.youtubeService.getPlaylistItems(this.generoSelected)
+            .subscribe(playlistItems => {
+              this.playlistItems = playlistItems;
+
+              let randomMovie = this.playlistItems[Math.floor(Math.random() * this.playlistItems.length)];
+
+              this.filme = new Filme();
+              this.filme.Descricao = randomMovie.description;
+              this.filme.Imagem = randomMovie.thumbnails.high;
+              this.filme.DataPublicacao = new Date(randomMovie.publishedAt);
+            });
+    }
+  }
+
+  // Página de detalhe
   onGoToDetalhe() {
     this.navCtrl.push(DetalhePage);
   }
 
-  onFind(form){
-
-  }
-
-  setFilme(){
-
-    let randomMovie = this.playlistItems[Math.floor(Math.random() * this.playlistItems.length)];
-
-    this.filme = new Filme();
-    this.filme.Descricao = randomMovie.description;
-    this.filme.Imagem = randomMovie.thumbnails.high;
-    this.filme.DataPublicacao = new Date(randomMovie.publishedAt);
-  }
-
+  // Teste deploy
   showPlatform() {
     let text = 'I run on: ' + this.platform.platforms();
     let alert = this.alertCtrl.create({
