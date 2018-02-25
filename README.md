@@ -20,8 +20,5 @@ Executar em localhost
 $ ionic serve
 ```
 
-Deploy em https://cineflix-brasil.herokuapp.com/
-Relizado automaticamente pelo Heroku a cada commit na branch master 
-
 
 
