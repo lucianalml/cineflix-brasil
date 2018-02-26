@@ -7,7 +7,6 @@
 </ion-header>
 
 <ion-content padding>
-
     <!-- <button ion-button (click)="showPlatform()">TEste</button> -->
 
     <div class="spacer" style="width:300px;height:60px;" id="restaurantes-spacer2"></div>
@@ -62,8 +61,8 @@
         </ion-row>
     </form>
 
-    <ion-row *ngIf="filme && filme.Imagem">
 
+    <ion-row *ngIf="filme && filme.Imagem">
         <ion-col>
             <ion-card (click)="onGoToDetalhe()">
                 <img [src]="filme.Imagem" class="img-responsive img-thumbnail" alt="filme.Nome">
@@ -75,12 +74,17 @@
                 </ion-fab> -->
                 <ion-item>
                     <!-- <ion-icon name="football" item-start large></ion-icon> -->
-                    <h2>{{filme.Nome}}</h2>
+                    <p>{{filme.Nome}}</p>
                     <p>{{filme.Descricao}}</p>
                 </ion-item>
             </ion-card>
         </ion-col>
 
     </ion-row>
+
+    <br>
+    <br>
+    <br>
+    <br>
 
 </ion-content>

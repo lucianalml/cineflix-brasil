@@ -69,6 +69,7 @@ export class HomePage {
         let randomMovie = this.playlistItems[Math.floor(Math.random() * this.playlistItems.length)];
 
         this.filme = new Filme();
+        this.filme.Nome = randomMovie.title;
         this.filme.Descricao = randomMovie.description;
         this.filme.Imagem = randomMovie.thumbnails.high;
         this.filme.DataPublicacao = new Date(randomMovie.publishedAt);
@@ -83,6 +84,7 @@ export class HomePage {
               let randomMovie = this.playlistItems[Math.floor(Math.random() * this.playlistItems.length)];
 
               this.filme = new Filme();
+              this.filme.Nome = randomMovie.title;
               this.filme.Descricao = randomMovie.description;
               this.filme.Imagem = randomMovie.thumbnails.high;
               this.filme.DataPublicacao = new Date(randomMovie.publishedAt);
