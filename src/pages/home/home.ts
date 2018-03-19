@@ -20,6 +20,7 @@ export class HomePage {
 
   detalhePage = DetalhePage;
   filme: Filme;
+  descricao: string;
 
   generoSelected = 'TODOS';
   generoList = [{ id: 'TODOS', nome: "Todos" }];
@@ -55,14 +56,16 @@ export class HomePage {
 
   onAssistirFilme(form: NgForm){
 
+    let playlistId = this.generoSelected;
+
     // Fazer a busca em todas as playlists
     if (this.generoSelected == 'TODOS') {
-
       // Recupera uma playlist aleatória
-      let randomPlaylist = this.playlists[Math.floor(Math.random() * this.playlists.length)];
+      playlistId = this.playlists[Math.floor(Math.random() * this.playlists.length)].id;
+    }
 
-      // Recupera um video aleatório
-      this.youtubeService.getPlaylistItems(randomPlaylist.id)
+      // Recupera um video aleatório na playlist selecionada
+      this.youtubeService.getPlaylistItems(playlistId)
       .subscribe(playlistItems => {
         this.playlistItems = playlistItems;
 
@@ -73,23 +76,14 @@ export class HomePage {
         this.filme.Descricao = randomMovie.description;
         this.filme.Imagem = randomMovie.thumbnails.high;
         this.filme.DataPublicacao = new Date(randomMovie.publishedAt);
+
+        if(this.filme.Descricao.length >= 200){
+          this.descricao = this.filme.Descricao.substring(0, 199);
+          this.descricao += "...";
+        }else{
+          this.descricao = this.filme.Descricao;
+        }
       });
-
-    } else {
-      // Recupera um video aleatório na playlist selecionada
-          this.youtubeService.getPlaylistItems(this.generoSelected)
-            .subscribe(playlistItems => {
-              this.playlistItems = playlistItems;
-
-              let randomMovie = this.playlistItems[Math.floor(Math.random() * this.playlistItems.length)];
-
-              this.filme = new Filme();
-              this.filme.Nome = randomMovie.title;
-              this.filme.Descricao = randomMovie.description;
-              this.filme.Imagem = randomMovie.thumbnails.high;
-              this.filme.DataPublicacao = new Date(randomMovie.publishedAt);
-            });
-    }
   }
 
   // Página de detalhe
@@ -106,5 +100,13 @@ export class HomePage {
       buttons: ['Ok']
     });
     alert.present();
+  }
+
+  mostraLinkDescricao(){
+    return this.filme && this.filme.Descricao.length >= 200;
+  }
+
+  mostrarDescricao(){
+    this.descricao = this.filme.Descricao;
   }
 }
