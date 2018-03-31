@@ -9,7 +9,6 @@
 <ion-content padding class="green-and-yellow-theme">
     <!-- <button ion-button (click)="showPlatform()">TEste</button> -->
 
-    <div class="spacer" style="width:auto;height:30px;" id="restaurantes-spacer2"></div>
     <form (ngSubmit)="onAssistirFilme(f)" #f="ngForm" novalidate>
         <ion-row justify-content-center>
             <ion-col col-md-6>
@@ -37,7 +36,7 @@
 
 
     <ion-row *ngIf="filme && filme.Imagem" justify-content-center>
-        <ion-col col-lg-6 col-md-12>
+        <ion-col col-xl-6>
             <ion-card color="dark">
                 <ion-card-header color="secondary">
                     {{filme.Nome}}
@@ -53,5 +52,5 @@
         </ion-col>
     </ion-row>
 
-    <div class="spacer" style="width:300px;height:30px;" id="restaurantes-spacer2"></div>
+    <div class="spacer space-footer" id="home-footer"></div>
 </ion-content>
