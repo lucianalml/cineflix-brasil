@@ -13,9 +13,9 @@ export class MyApp {
   rootPage = HomePage;
 
   @ViewChild('nav') nav: NavController;
-  
-  constructor(private platform: Platform, 
-    private statusBar: StatusBar, 
+
+  constructor(private platform: Platform,
+    private statusBar: StatusBar,
     private splashScreen: SplashScreen) {
 
     platform.ready().then(() => {
