@@ -1,18 +1,18 @@
 <ion-header>
-    <ion-navbar color="primary">
-        <ion-title text-center secondary>
+    <ion-navbar color="dark">
+        <ion-title text-center>
             <div class="toolbar-title toolbar-title-wp"> Cinefix Brasil</div>
         </ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="green-and-yellow-theme">
     <!-- <button ion-button (click)="showPlatform()">TEste</button> -->
 
-    <div class="spacer" style="width:300px;height:60px;" id="restaurantes-spacer2"></div>
+    <div class="spacer" style="width:auto;height:30px;" id="restaurantes-spacer2"></div>
     <form (ngSubmit)="onAssistirFilme(f)" #f="ngForm" novalidate>
         <ion-row justify-content-center>
-            <ion-col col-lg-6 col-md-12>
+            <ion-col col-md-6>
                 <ion-list>
                     <ion-item>
                         <ion-label>Genêro</ion-label>
@@ -25,12 +25,12 @@
             </ion-col>
         </ion-row>
 
-        <ion-row text-center>
-            <ion-col>
-                <button ion-button icon-right type="submit" color="secondary">
-          SORTEAR FILME
-          <ion-icon name="videocam"></ion-icon>
-        </button>
+        <ion-row justify-content-center>
+            <ion-col col-md-6>
+                <button ion-button full icon-right type="submit" color="secondary">
+                  SORTEAR FILME
+                  <ion-icon name="videocam"></ion-icon>
+                </button>
             </ion-col>
         </ion-row>
     </form>
@@ -38,34 +38,20 @@
 
     <ion-row *ngIf="filme && filme.Imagem" justify-content-center>
         <ion-col col-lg-6 col-md-12>
-            <ion-card>
-                <ion-card-header>
+            <ion-card color="dark">
+                <ion-card-header color="secondary">
                     {{filme.Nome}}
                 </ion-card-header>
 
-                <img [src]="filme.Imagem" class="img-responsive img-thumbnail" alt="filme.Nome">
-                <!-- <img src="data:image/*;base64,{{filme.Imagem}}" /> -->
-                <!-- <ion-fab right top>
-                <button ion-fab>
-                <ion-icon name="pin"></ion-icon>
-                </button>
-                </ion-fab> -->
-
                 <ion-card-content>
-                    <ion-row text-muted>Descrição: </ion-row>
-                    <ion-row text-justify>{{descricao}}</ion-row>
+                    <img [src]="filme.Imagem" class="img-responsive img-thumbnail" alt="filme.Nome">
                     <ion-row>
-                        <ion-col text-right><button type="button" ion-button clear (click)="onGoToDetalhe()">Ver mais</button></ion-col>
+                        <ion-col text-right><button type="button" color="secondary" ion-button clear (click)="onGoToDetalhe()">Ver mais</button></ion-col>
                     </ion-row>
                 </ion-card-content>
             </ion-card>
         </ion-col>
-
     </ion-row>
 
-    <br>
-    <br>
-    <br>
-    <br>
-
+    <div class="spacer" style="width:300px;height:30px;" id="restaurantes-spacer2"></div>
 </ion-content>
