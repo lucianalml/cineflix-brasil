@@ -9,7 +9,7 @@
                 </button>
             </ion-col>
             <ion-col text-right>
-                <button (click)="goToSobre()" ion-button clear>
+                <button (click)="goToSobre()" ion-button clear [disabled]="sobrePageOpened()">
                     <div>Sobre</div>
                 </button>
             </ion-col>
