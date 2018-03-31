@@ -23,7 +23,10 @@ $ ionic serve
 
 Instalar pré requisitos Java JDK, Android Studio, Atualizar Android SDK tools, platform and component dependencies (SDK Manager) 
 
-Verificar:  https://ionicframework.com/docs/intro/deploying/
+### Documentação  
+
+https://ionicframework.com/docs/intro/deploying/
+https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html
 
 ```sh
 $ brew cask install android-platform-tools

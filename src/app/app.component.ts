@@ -11,6 +11,7 @@ import { SobrePage } from '../pages/sobre/sobre';
 })
 export class MyApp {
   rootPage = HomePage;
+  sobrePage = SobrePage;
 
   @ViewChild('nav') nav: NavController;
 
@@ -24,6 +25,14 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
     });
+  }
+
+  sobrePageOpened() {
+    if (this.nav.getActive() )
+      return this.nav.getActive().name == 'SobrePage';
+    else {
+      return false;
+    }
   }
 
   goToSobre(){
