@@ -25,12 +25,13 @@ Instalar pré requisitos Java JDK, Android Studio, Atualizar Android SDK tools, 
 
 ### Documentação  
 
+
 https://ionicframework.com/docs/intro/deploying/
 https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html
 
+Setar as variaveis de ambiente JAVA_HOME, ANDROID_HOME
+
 ```sh
-$ brew cask install android-platform-tools
-$ ionic cordova platform add android
 $ ionic cordova run android --device
 ```
 
