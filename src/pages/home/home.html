@@ -1,12 +1,12 @@
 <ion-header>
-    <ion-navbar color="dark">
+    <ion-navbar>
         <ion-title text-center>
-            <div class="toolbar-title toolbar-title-wp"> Cinefix Brasil</div>
+            <div class="toolbar-title toolbar-title-md"> Cinefix Brasil</div>
         </ion-title>
     </ion-navbar>
 </ion-header>
 
-<ion-content padding class="green-and-yellow-theme">
+<ion-content padding class="content-cineflix">
     <!-- <button ion-button (click)="showPlatform()">TEste</button> -->
 
     <form (ngSubmit)="onAssistirFilme(f)" #f="ngForm" novalidate>
@@ -14,12 +14,17 @@
             <ion-col col-md-6>
                 <ion-list>
                     <ion-item>
-                        <ion-label>Genêro</ion-label>
-                        <ion-select [(ngModel)]="generoSelected" [ngModelOptions]="{standalone: true}" interface="action-sheet" cancelText="Cancelar" okText="Selecionar">
-                            <!-- <ion-option color="primary" *ngFor="let item of generoList; let i = index" value="{{item.id}}" selected="{{(i==0)}}">{{item.nome}}</ion-option> -->
-                            <ion-option color="primary" *ngFor="let item of generoList; let i = index" value="{{item.id}}">{{item.nome}}</ion-option>
+                        <ion-label color="select">Genêro</ion-label>
+                        <ion-select [(ngModel)]="generoSelected" [ngModelOptions]="{standalone: true}" cancelText="Cancelar" okText="Selecionar" interface="action-sheet">
+                            <ion-option no-padding *ngFor="let item of generoList; let i = index" value="{{item.id}}">{{ item.nome}}</ion-option>
                         </ion-select>
                     </ion-item>
+                    <!-- <ion-item>
+                        <ion-label color="secondary"></ion-label>
+                        <ion-select [(ngModel)]="generoSelected" [ngModelOptions]="{standalone: true}" interface="action-sheet" cancelText="Cancelar" okText="Selecionar">
+                            <ion-option *ngFor="let item of generoList; let i = index" value="{{item.id}}">{{item.nome}}</ion-option>
+                        </ion-select>
+                    </ion-item> -->
                 </ion-list>
             </ion-col>
         </ion-row>
@@ -33,7 +38,6 @@
             </ion-col>
         </ion-row>
     </form>
-
 
     <ion-row *ngIf="filme && filme.Imagem" justify-content-center>
         <ion-col col-xl-6>

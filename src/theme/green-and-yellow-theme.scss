@@ -1,6 +1,81 @@
-.green-and-yellow-theme {
-    background: linear-gradient(rgba(0, 128, 0, 0.63), rgba(255, 255, 0, 0.562));
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-}
+    //Cores
+    $colors: ( primary: #689f38, secondary: rgba(255, 255, 0, 0.685), danger: #f53d3d, light: #f4f4f4, dark: #222, select:#8cb964);
+    //custom TAG
+    // ion-header {
+    //     .toolbar-background {
+    //         background: linear-gradient( rgba(0, 128, 0, 0.63), rgba(255, 255, 0, 0.562));
+    //     }
+    // }
+    //Definição cores scroll
+    div::-webkit-scrollbar {
+        border: none;
+        width: 0;
+        background: #222;
+    }
+    
+    div::-webkit-scrollbar-track {
+        border: none;
+        width: 0;
+        background: #222;
+    }
+    
+    div::-webkit-scrollbar-thumb {
+        border: none;
+        width: 0;
+        background: #000;
+    }
+    
+    //Cor texto header
+    $toolbar-md-title-text-color: map-get($colors, "primary");
+    $toolbar-ios-title-text-color: map-get($colors, "primary");
+    $toolbar-wp-title-text-color: map-get($colors, "primary");
+    //Cor botão header
+    $toolbar-md-button-color: map-get($colors, "primary");
+    $toolbar-ios-button-color: map-get($colors, "primary");
+    $toolbar-wp-button-color: map-get($colors, "primary");
+    //Cor header
+    $toolbar-background:#222;
+    //Cor content
+    $background-color: #000;
+    $background-md-color: #000;
+    $background-ios-color: #000;
+    $background-wp-color: #000;
+    //Cor select
+    $action-sheet-md-background:#222;
+    $action-sheet-ios-background:#222;
+    $action-sheet-wp-background:#222;
+    $action-sheet-md-border-color:#000;
+    $action-sheet-ios-border-color:#000;
+    $action-sheet-wp-border-color:#000;
+    $action-sheet-md-button-background:#222;
+    $action-sheet-ios-button-background:#222;
+    $action-sheet-wp-button-background:#222;
+    $action-sheet-md-button-background-activated:#000;
+    $action-sheet-ios-button-background-activated:#000;
+    $action-sheet-wp-button-background-activated:#000;
+    $action-sheet-md-button-border-color:#222;
+    $action-sheet-ios-button-border-color:#222;
+    $action-sheet-wp-button-border-color:#222;
+    //Cor texto select
+    $action-sheet-md-title-color:#8cb964;
+    $action-sheet-ios-title-color:r#8cb964;
+    $action-sheet-wp-title-color:#8cb964;
+    $action-sheet-md-button-text-color:rgba(255, 255, 0, 0.685);
+    $action-sheet-ios-button-text-color:rgba(255, 255, 0, 0.685);
+    $action-sheet-wp-button-text-color:rgba(255, 255, 0, 0.685);
+    $action-sheet-md-button-destructive-text-color:#8cb964;
+    $action-sheet-ios-button-destructive-text-color:#8cb964;
+    $action-sheet-wp-button-destructive-text-color:#8cb964;
+    $text-color:#689f38;
+    //Cor texto footer
+    $toolbar-md-title-text-color: map-get($colors, "primary");
+    $toolbar-ios-title-text-color: map-get($colors, "primary");
+    $toolbar-wp-title-text-color: map-get($colors, "primary");
+    //Fonts
+    @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:b');
+    $sans-serif: 'Josefin Sans',
+    sans-serif;
+    $font-family-base: $sans-serif;
+    $font-family-ios-base: $sans-serif;
+    $font-family-md-base: $sans-serif;
+    $font-family-wp-base: $sans-serif;
