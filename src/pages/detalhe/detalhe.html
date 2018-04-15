@@ -12,7 +12,10 @@
         <ion-col col-lg-6 col-md-12>
 
             <ion-card *ngIf="video" (click)="onOpenVideo()">
-                <img *ngIf="video.thumbnails" [src]="video.thumbnails.high">
+                <!-- <img *ngIf="video.thumbnails" [src]="video.thumbnails.high"> -->
+
+                <iframe [src]="video.id | youtube" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
                 <ion-card-content>
                     <ion-card-title>
                         {{ video.title }}
@@ -20,6 +23,7 @@
                     <p>
                         {{ video.description }}
                     </p>
+
                 </ion-card-content>
             </ion-card>
 

@@ -25,15 +25,23 @@ Instalar pré requisitos Java JDK, Android Studio, Atualizar Android SDK tools, 
 
 ### Documentação  
 
-
 https://ionicframework.com/docs/intro/deploying/
 https://cordova.apache.org/docs/en/latest/guide/platforms/android/index.html
 
 Setar as variaveis de ambiente JAVA_HOME, ANDROID_HOME
 
+### Rodando o aplicativo no celular
+Habilitar depuração USB
+Habilitar modo desenvolvedor
+
 ```sh
 $ ionic cordova run android --device
 ```
+### Gerar APK
+```sh
+$ ionic cordova run android --prod --release
+```
+
 
 
 

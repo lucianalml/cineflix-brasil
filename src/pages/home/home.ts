@@ -52,6 +52,10 @@ export class HomePage {
 
   onRandomButton(form: NgForm){
 
+    if (! this.playlists) {
+      return;
+    }
+
     let playlistId = this.generoSelected;
 
     // Fazer a busca em todas as playlists

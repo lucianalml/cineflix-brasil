@@ -43,11 +43,13 @@ export class DetalhePage {
   }
 
   onOpenVideo(){
-    if (this.platform.is('cordova')) {
-      this.youtube.openVideo(this.video.id);
-    } else {
-      window.open('https://www.youtube.com/watch?v=' + this.video.id);
-    }
+
+    console.log(this.video);
+    // if (this.platform.is('cordova')) {
+    //   this.youtube.openVideo(this.video.id);
+    // } else {
+    //   window.open('https://www.youtube.com/watch?v=' + this.video.id);
+    // }
   }
 
 }
