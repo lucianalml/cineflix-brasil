@@ -11,7 +11,7 @@
     <ion-row justify-content-center>
         <ion-col col-lg-6 col-md-12>
 
-            <ion-card *ngIf="video">
+            <ion-card *ngIf="video" (click)="onOpenVideo()">
                 <img *ngIf="video.thumbnails" [src]="video.thumbnails.high">
                 <ion-card-content>
                     <ion-card-title>

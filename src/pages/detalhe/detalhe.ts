@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+
+import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
 
 import { PlaylistItem } from '../../models/playlistItem';
 
@@ -25,19 +27,27 @@ export class DetalhePage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
+    private platform: Platform,
+    private youtube: YoutubeVideoPlayer,
     private youtubeService: YoutubeService) {
 
     this.playlistItem = navParams.get('item');
-    console.log(this.playlistItem);
   }
 
   ionViewDidLoad() {
     // Recupera detalhes do video
     this.youtubeService.getVideo(this.playlistItem.videoId)
       .subscribe(video => {
-        console.log(video);
         this.video = video;
       });
+  }
+
+  onOpenVideo(){
+    if (this.platform.is('cordova')) {
+      this.youtube.openVideo(this.video.id);
+    } else {
+      window.open('https://www.youtube.com/watch?v=' + this.video.id);
+    }
   }
 
 }
