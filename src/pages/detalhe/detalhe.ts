@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 
-import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
-
 import { PlaylistItem } from '../../models/playlistItem';
 
 import { YoutubeService } from '../../services/youtube';
@@ -28,7 +26,6 @@ export class DetalhePage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private platform: Platform,
-    private youtube: YoutubeVideoPlayer,
     private youtubeService: YoutubeService) {
 
     this.playlistItem = navParams.get('item');

@@ -37,10 +37,6 @@ Habilitar modo desenvolvedor
 ```sh
 $ ionic cordova run android --device
 ```
-### Gerar APK
-```sh
-$ ionic cordova run android --prod --release
-```
 
 
 

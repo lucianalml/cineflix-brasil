@@ -5,8 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { HttpModule } from '@angular/http';
 
-import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player';
-
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DetalhePage } from '../pages/detalhe/detalhe';
@@ -40,7 +38,6 @@ import { YoutubePipe } from '../pipes/youtube/youtube';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    YoutubeVideoPlayer,
     YoutubeService
   ]
 })
