@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { PlaylistItem } from '../../models/playlistItem';
+
+import { YoutubeService } from '../../services/youtube';
+import { Video } from '../../models/video';
+
 /**
  * Generated class for the DetalhePage page.
  *
@@ -15,11 +20,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class DetalhePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  playlistItem: PlaylistItem;
+  video: Video;
+
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    private youtubeService: YoutubeService) {
+
+    this.playlistItem = navParams.get('item');
+    console.log(this.playlistItem);
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DetalhePage');
+    // Recupera detalhes do video
+    this.youtubeService.getVideo(this.playlistItem.videoId)
+      .subscribe(video => {
+        console.log(video);
+        this.video = video;
+      });
   }
 
 }

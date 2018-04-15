@@ -9,7 +9,7 @@
 <ion-content padding class="content-cineflix">
     <!-- <button ion-button (click)="showPlatform()">TEste</button> -->
 
-    <form (ngSubmit)="onAssistirFilme(f)" #f="ngForm" novalidate>
+    <form (ngSubmit)="onRandomButton(f)" #f="ngForm" novalidate>
         <ion-row justify-content-center>
             <ion-col col-md-6>
                 <ion-list>
@@ -39,15 +39,15 @@
         </ion-row>
     </form>
 
-    <ion-row *ngIf="filme && filme.Imagem" justify-content-center>
+    <ion-row *ngIf="randomItem" justify-content-center>
         <ion-col col-xl-6>
             <ion-card color="dark">
                 <ion-card-header color="secondary">
-                    {{filme.Nome}}
+                    {{ randomItem.title }}
                 </ion-card-header>
 
                 <ion-card-content>
-                    <img [src]="filme.Imagem" class="img-responsive img-thumbnail" alt="filme.Nome">
+                    <img *ngIf="randomItem.thumbnails" [src]="randomItem.thumbnails.high" class="img-responsive img-thumbnail" alt="randomItem.title">
                     <ion-row>
                         <ion-col text-right><button type="button" color="secondary" ion-button clear (click)="onGoToDetalhe()">Ver mais</button></ion-col>
                     </ion-row>

@@ -10,20 +10,17 @@
 
     <ion-row justify-content-center>
         <ion-col col-lg-6 col-md-12>
-            <ion-card>
-
+            <ion-card *ngIf="video">
                 <ion-item>
                     <ion-avatar item-start>
                         <img src="http://ionicframework.com/dist/preview-app/www/assets/img/marty-avatar.png">
                     </ion-avatar>
-                    <h2>Marty McFly</h2>
-                    <p>November 5, 1955</p>
+                    <h2>{{ video.title }}</h2>
                 </ion-item>
 
-                <img src="http://ionicframework.com/dist/preview-app/www/assets/img/advance-card-bttf.png">
-
+                <img *ngIf="video.thumbnails" [src]="video.thumbnails.high">
                 <ion-card-content>
-                    <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+                    <p>{{ video.description }}</p>
                 </ion-card-content>
 
                 <ion-row>
