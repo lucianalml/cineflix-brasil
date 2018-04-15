@@ -7,6 +7,8 @@ export class Video {
       high: string,
       medium: string },
     public tags?: string[],
-    ) {}
-
+    public player?: {
+      embedHtml: string
+    }
+  ) {}
 }

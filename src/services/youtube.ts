@@ -20,6 +20,11 @@ export class YoutubeService {
     + '&part=snippet&key='
     + this.apiKey)
     .map(this.extractVideo);
+
+    // TODO -> forkJoin para recuperar player
+    // let videoPlayerEndpoint = 'https://www.googleapis.com/youtube/v3/videos?id=' + id
+    // + '&part=player&key=' + this.apiKey;
+
   }
 
   extractVideo(response : Response) : Video {
