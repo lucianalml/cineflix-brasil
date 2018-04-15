@@ -44,7 +44,6 @@ export class YoutubeService {
       );
   }
 
-
   // Recupera todas as playlists to canal
   fetchPlaylistsFromChannel() {
     return this.http.get('https://www.googleapis.com/youtube/v3/playlists?channelId='
@@ -67,6 +66,10 @@ export class YoutubeService {
         + '&part=snippet&key='
         + this.apiKey)
         .map(this.extractPlaylistItems);
+
+        // TODO para cada item da playlist buscar as estatisticas do vídeo em
+        // https://www.googleapis.com/youtube/v3/videos?id=xKE3lfwMb1Y&part=statistics
+        // para melhorar algoritmo de sorteio
     }
 
     extractPlaylistItems(response: Response) : PlaylistItem[] {
@@ -75,15 +78,7 @@ export class YoutubeService {
         return [];
       }
 
-      return response.json().items.map(item =>
-        {
-          // let thumbnails = {
-          //   default: item.snippet.thumbnails.default.url,
-          //   high: item.snippet.thumbnails.high.url,
-          //   medium: item.snippet.thumbnails.medium.url
-          // };
-
-          // console.log(item);
+      return response.json().items.map(item => {
 
           let playlistItem = new PlaylistItem(item.id,
             item.snippet.title,

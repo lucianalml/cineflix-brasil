@@ -7,6 +7,14 @@ export class PlaylistItem {
         high: string,
         medium: string },
     public publishedAt?: Date,
-    public videoId?: string
+    public videoId?: string,
+
+    public statistics?: {
+      viewCount: number,
+      likeCount: number,
+      dislikeCount: number,
+      favoriteCount: number,
+      commentCount: number
+    }
     ) {}
 }

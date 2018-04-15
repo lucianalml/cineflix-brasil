@@ -10,39 +10,17 @@
 
     <ion-row justify-content-center>
         <ion-col col-lg-6 col-md-12>
-            <ion-card *ngIf="video">
-                <ion-item>
-                    <ion-avatar item-start>
-                        <img src="http://ionicframework.com/dist/preview-app/www/assets/img/marty-avatar.png">
-                    </ion-avatar>
-                    <h2>{{ video.title }}</h2>
-                </ion-item>
 
+            <ion-card *ngIf="video">
                 <img *ngIf="video.thumbnails" [src]="video.thumbnails.high">
                 <ion-card-content>
-                    <p>{{ video.description }}</p>
+                    <ion-card-title>
+                        {{ video.title }}
+                    </ion-card-title>
+                    <p>
+                        {{ video.description }}
+                    </p>
                 </ion-card-content>
-
-                <ion-row>
-                    <ion-col>
-                        <button ion-button icon-left clear small>
-              <ion-icon name="thumbs-up"></ion-icon>
-              <div>12 Likes</div>
-            </button>
-                    </ion-col>
-                    <ion-col>
-                        <button ion-button icon-left clear small>
-              <ion-icon name="text"></ion-icon>
-              <div>4 Comments</div>
-            </button>
-                    </ion-col>
-                    <ion-col center text-center>
-                        <ion-note>
-                            11h ago
-                        </ion-note>
-                    </ion-col>
-                </ion-row>
-
             </ion-card>
 
         </ion-col>
