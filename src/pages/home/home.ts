@@ -21,6 +21,7 @@ export class HomePage {
   detalhePage = DetalhePage;
   filme: Filme;
   descricao: string;
+  loader: boolean = false;
 
   generoSelected = 'TODOS';
   generoList = [{ id: 'TODOS', nome: "Todos" }];
@@ -45,7 +46,7 @@ export class HomePage {
         this.generoList = [{ id: 'TODOS', nome: "Todos" }];
         for (let i = 0; i < this.playlists.length; i++) {
           this.generoList.push({id: this.playlists[i].id,
-                                nome: this.playlists[i].title });
+                                nome: this.playlists[i].title  ? this.playlists[i].title : "Sem titilo" });
         }
       },
       error => {
@@ -55,7 +56,7 @@ export class HomePage {
   }
 
   onAssistirFilme(form: NgForm){
-
+    this.loader = true;
     let playlistId = this.generoSelected;
 
     // Fazer a busca em todas as playlists
@@ -70,19 +71,21 @@ export class HomePage {
         this.playlistItems = playlistItems;
 
         let randomMovie = this.playlistItems[Math.floor(Math.random() * this.playlistItems.length)];
+        if(randomMovie &&randomMovie.id){
+          this.filme = new Filme();
+          this.filme.Nome = randomMovie && randomMovie.title ? randomMovie.title : "Sem título";
+          this.filme.Descricao = randomMovie && randomMovie.description ? randomMovie.description : "Sem descrição";
+          this.filme.Imagem = randomMovie.thumbnails.high;
+          this.filme.DataPublicacao = new Date(randomMovie.publishedAt);
 
-        this.filme = new Filme();
-        this.filme.Nome = randomMovie.title;
-        this.filme.Descricao = randomMovie.description;
-        this.filme.Imagem = randomMovie.thumbnails.high;
-        this.filme.DataPublicacao = new Date(randomMovie.publishedAt);
-
-        if(this.filme.Descricao.length >= 200){
-          this.descricao = this.filme.Descricao.substring(0, 199);
-          this.descricao += "...";
-        }else{
-          this.descricao = this.filme.Descricao;
+          if(this.filme.Descricao.length >= 200){
+            this.descricao = this.filme.Descricao.substring(0, 199);
+            this.descricao += "...";
+          }else{
+            this.descricao = this.filme.Descricao;
+          }
         }
+        this.loader = false;
       });
   }
 

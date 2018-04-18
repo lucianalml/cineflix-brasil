@@ -31,15 +31,24 @@
 
         <ion-row justify-content-center>
             <ion-col col-md-6>
-                <button ion-button full icon-right type="submit" color="secondary">
+                <button ion-button full icon-right type="submit" color="secondary" [disabled]="loader">
                   SORTEAR FILME
                   <ion-icon name="videocam"></ion-icon>
                 </button>
             </ion-col>
         </ion-row>
+
+        <div class="space-loader" *ngIf="loader"></div>
+
+        <ion-row text-center *ngIf="loader">
+            <ion-col col-12>
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                <span class="sr-only">Loading...</span>
+            </ion-col>
+        </ion-row>
     </form>
 
-    <ion-row *ngIf="filme && filme.Imagem" justify-content-center>
+    <ion-row *ngIf="filme && filme.Imagem && !loader" justify-content-center>
         <ion-col col-xl-6>
             <ion-card color="dark">
                 <ion-card-header color="secondary">
