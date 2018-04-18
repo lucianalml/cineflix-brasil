@@ -11,6 +11,7 @@
         "ionic:build": "ionic-app-scripts build",
         "ionic:serve": "ionic-app-scripts serve"
     },
+<<<<<<< HEAD
     "dependencies": {
         "@angular/common": "5.0.1",
         "@angular/compiler": "5.0.1",
@@ -61,4 +62,10 @@
     "config": {
         "ionic_copy": "./scripts/copy-custom-libs.js"
     }
+=======
+    "platforms": [
+      "android"
+    ]
+  }
+>>>>>>> 2a53070420058fe42a601816e48e482f616d834b
 }

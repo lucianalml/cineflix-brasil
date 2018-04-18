@@ -12,12 +12,15 @@ import { SobrePage } from '../pages/sobre/sobre';
 
 import { YoutubeService } from '../services/youtube';
 
+import { YoutubePipe } from '../pipes/youtube/youtube';
+
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     DetalhePage,
-    SobrePage
+    SobrePage,
+    YoutubePipe
   ],
   imports: [
     BrowserModule,
