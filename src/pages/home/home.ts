@@ -22,6 +22,7 @@ export class HomePage {
   loader: boolean = false;
   generoSelected = 'TODOS';
   generoList = [{ id: 'TODOS', nome: "Todos" }];
+  temItens: boolean = false;
 
   playlists: Playlist[];
   randomItem : PlaylistItem;
@@ -68,29 +69,10 @@ export class HomePage {
       playlistId = this.playlists[Math.floor(Math.random() * this.playlists.length)].id;
     }
 
-      // Recupera um video aleatório na playlist selecionada
-      this.youtubeService.getPlaylistItems(playlistId)
-      .subscribe(playlistItems => {
+    this.recuperarFilme(playlistId);
 
-        if (playlistItems.length == 0) {
-          return;
-        }
-
-        this.randomItem = playlistItems[Math.floor(Math.random() * playlistItems.length)];
-
-        if(this.randomItem && this.randomItem.id){
-
-          if(this.randomItem.description.length >= 200){
-            this.descricao = this.randomItem.description.substring(0, 199);
-            this.descricao += "...";
-          }else{
-            this.descricao = this.randomItem.description;
-          }
-        }
-
-        this.loader = false;
-        // console.log(this.randomItem);
-      });
+    if(this.temItens)
+        this.recuperarFilme(playlistId);
   }
 
   // Página de detalhe
@@ -107,5 +89,30 @@ export class HomePage {
       buttons: ['Ok']
     });
     alert.present();
+  }
+
+  recuperarFilme(playlistId){
+    // Recupera um video aleatório na playlist selecionada
+    this.youtubeService.getPlaylistItems(playlistId)
+    .subscribe(playlistItems => {
+
+        if (playlistItems.length != 0) {
+          this.temItens = true;
+          this.randomItem = playlistItems[Math.floor(Math.random() * playlistItems.length)];
+
+          if(this.randomItem && this.randomItem.id){
+            if(this.randomItem.description.length >= 200){
+                this.descricao = this.randomItem.description.substring(0, 199);
+                this.descricao += "...";
+            }else{
+                this.descricao = this.randomItem.description;
+            }
+           }
+        }else
+          this.temItens = false;
+
+        this.loader = false;
+        // console.log(this.randomItem);
+      });
   }
 }
