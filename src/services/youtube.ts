@@ -2,78 +2,98 @@ import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
 import 'rxjs/Rx';
 
-import { Filme } from '../models/filme';
 import { Playlist } from '../models/playlist';
 import { PlaylistItem } from '../models/playlistItem';
+import { Video } from '../models/video';
 
 @Injectable()
 export class YoutubeService {
-  private filme: Filme;
-  private playlists: Playlist[];
 
   private channelId = 'UC2dAdLOJZiQsSFjcTsERsDA';
   private apiKey = 'AIzaSyBftDhqCdhKRvul673QbydsBPoqwbvBui0';
 
   constructor(private http: Http) {}
 
-  getFilme() {
-    return this.filme;
-    // const userId = this.authService.getActiveUser().uid;
-    // return this.http.get('https://ionic2-recipebook.firebaseio.com/' + userId + '/recipes.json?auth=' + token, this.recipes)
-    //   .map((response: Response) => response.json());
+  getVideo(id: string) {
+    return this.http.get('https://www.googleapis.com/youtube/v3/videos?id='
+    + id
+    + '&part=snippet&key='
+    + this.apiKey)
+    .map(this.extractVideo);
+
+    // TODO -> forkJoin para recuperar player
+    // let videoPlayerEndpoint = 'https://www.googleapis.com/youtube/v3/videos?id=' + id
+    // + '&part=player&key=' + this.apiKey;
+
+  }
+
+  extractVideo(response : Response) : Video {
+    if (!response.json()) {
+      return null;
+    }
+
+    // Recupra os detalhes do primeiro item
+    if (response.json().items.length == 0 ) {
+      return null;
+    }
+
+    let item = response.json().items[0];
+
+    return new Video(item.id,
+        item.snippet.title,
+        item.snippet.description,
+        { default: item.snippet.thumbnails.default.url,
+          high: item.snippet.thumbnails.high.url,
+          medium: item.snippet.thumbnails.medium.url },
+        item.snippet.tags
+      );
   }
 
   // Recupera todas as playlists to canal
-  fetchPlaylists() {
+  fetchPlaylistsFromChannel() {
     return this.http.get('https://www.googleapis.com/youtube/v3/playlists?channelId='
       + this.channelId
       + '&part=snippet&key='
       + this.apiKey)
       .map(this.extractPlaylists);
-      // .do((playlists: Playlist[]) => {
-      //   if (playlists) {
-      //     this.playlists = playlists;
-      //   } else {
-      //     this.playlists = [];
-      //   }
-      // });
     }
 
     extractPlaylists(response : Response){
-      // console.log("Playlists do canal", response.json());
       if (!response.json()) {
         return [];
       }
       return response.json().items.map(item => new Playlist(item.id, item.snippet.title));
     }
 
-    getPlaylistItems(playlistId:string){
+    getPlaylistItems(playlistId: string){
       return this.http.get('https://www.googleapis.com/youtube/v3/playlistItems?playlistId='
         + playlistId
         + '&part=snippet&key='
         + this.apiKey)
-        // .map((response: Response) => response.json());
         .map(this.extractPlaylistItems);
+
+        // TODO para cada item da playlist buscar as estatisticas do vídeo em
+        // https://www.googleapis.com/youtube/v3/videos?id=xKE3lfwMb1Y&part=statistics
+        // para melhorar algoritmo de sorteio
     }
 
-    extractPlaylistItems(response : Response){
-      console.log("Itens da playlist", response.json());
+    extractPlaylistItems(response: Response) : PlaylistItem[] {
+
       if (!response.json()) {
         return [];
       }
-      return response.json().items.map(item =>
-        {
-          let thumbnails = {
-            default: item.snippet.thumbnails.default.url,
-            high: item.snippet.thumbnails.high.url,
-            medium: item.snippet.thumbnails.medium.url
-          };
+
+      return response.json().items.map(item => {
 
           let playlistItem = new PlaylistItem(item.id,
             item.snippet.title,
             item.snippet.description,
-            thumbnails,
-            item.snippet.publishedAt);
+            { default: item.snippet.thumbnails.default.url,
+              high: item.snippet.thumbnails.high.url,
+              medium: item.snippet.thumbnails.medium.url },
+            item.snippet.publishedAt,
+            item.snippet.resourceId.videoId
+          );
 
           return playlistItem;
         }

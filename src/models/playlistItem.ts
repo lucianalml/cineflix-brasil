@@ -1,5 +1,3 @@
-// import { Filme } from './filme';
-
 export class PlaylistItem {
   constructor(public id?: string,
     public title?: string,
@@ -8,6 +6,15 @@ export class PlaylistItem {
         default: string,
         high: string,
         medium: string },
-    public publishedAt?: Date
+    public publishedAt?: Date,
+    public videoId?: string,
+
+    public statistics?: {
+      viewCount: number,
+      likeCount: number,
+      dislikeCount: number,
+      favoriteCount: number,
+      commentCount: number
+    }
     ) {}
 }
