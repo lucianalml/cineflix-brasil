@@ -80,10 +80,15 @@ export class YoutubeService {
     extractPlaylistItems(response: Response) : PlaylistItem[] {
 
       if (!response.json()) {
-        return [];
+        // return [];
+        return null;
       }
 
       return response.json().items.map(item => {
+
+          if ( !item || !item.snippet || !item.snippet.thumbnails ) {
+            return null;
+          }
 
           let playlistItem = new PlaylistItem(item.id,
             item.snippet.title,

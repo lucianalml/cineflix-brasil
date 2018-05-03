@@ -3,7 +3,7 @@ import { NgForm } from "@angular/forms";
 
 import { NavController, AlertController, Platform, LoadingController } from 'ionic-angular';
 
-import { DetalhePage } from "../detalhe/detalhe";
+import { DetalhePage } from '../detalhe/detalhe';
 
 import { Playlist } from './../../models/playlist';
 import { PlaylistItem } from '../../models/playlistItem';
@@ -17,11 +17,10 @@ import { YoutubeService } from '../../services/youtube';
 export class HomePage {
 
   detalhePage = DetalhePage;
-  descricao: string;
+
   generoSelected = 'TODOS';
   generoList = [{ id: 'TODOS', nome: "Todos" }];
-  temItens: boolean = false;
-  categoria: string;
+
   pesquisado: boolean = false;
   loading = this.loadingCtrl.create();
 
@@ -91,30 +90,19 @@ export class HomePage {
   }
 
   recuperarFilme(playlistId){
+
     this.showLoading();
+
     // Recupera um video aleatório na playlist selecionada
     this.youtubeService.getPlaylistItems(playlistId)
-    .subscribe(playlistItems => {
+      .subscribe(playlistItems => {
 
-          this.temItens = true;
-          this.randomItem = playlistItems[Math.floor(Math.random() * playlistItems.length)];
+        playlistItems = playlistItems.filter(item => item !== null);
 
-          if(this.randomItem && this.randomItem.id){
-            if(this.randomItem.description.length >= 200){
-                this.descricao = this.randomItem.description.substring(0, 199);
-                this.descricao += "...";
-            }else{
-                this.descricao = this.randomItem.description;
-            }
-           }
+        this.randomItem = playlistItems[Math.floor(Math.random() * playlistItems.length)];
 
         this.hideLoading();
-        // console.log(this.randomItem);
       });
-  }
-
-  setCategoria(categoria){
-    this.categoria = categoria;
   }
 
   showLoading() {
