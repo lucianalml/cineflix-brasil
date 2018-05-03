@@ -57,6 +57,15 @@
         height: 10%;
     }
     
+    .button-custom {
+        background: linear-gradient(left, #00610B, rgb(201, 204, 1));
+        color: #ffffff !important;
+    }
+    
+    //Cor texto botão
+    // $button-md-text-color: #FFFFFF;
+    // $button-ios-text-color: #FFFFFF;
+    // $button-wp-text-color: #FFFFFF;
     //Cor botão header
     // $toolbar-md-button-color: #95a5a6;
     // $toolbar-ios-button-color: #95a5a6;
