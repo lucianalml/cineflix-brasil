@@ -54,4 +54,11 @@ export class DetalhePage {
 
   }
 
+  setDetalheFilme(detalhe){
+    if(detalhe && detalhe.length > 200)
+      return detalhe.substring(-1, 199) + "...";
+    else
+      return detalhe;
+  }
+
 }

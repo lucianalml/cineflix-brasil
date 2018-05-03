@@ -1,9 +1,6 @@
-<!-- Font-awesome -->
-<link href="assets/css/font-awesome.min.css" rel="stylesheet" />
-
 <ion-header>
     <ion-navbar>
-        <ion-title text-center>
+        <ion-title>
             <div class="toolbar-title toolbar-title-md"> Cinefix Brasil</div>
         </ion-title>
     </ion-navbar>
@@ -12,14 +9,39 @@
 <ion-content padding class="content-cineflix">
     <!-- <button ion-button (click)="showPlatform()">TEste</button> -->
 
+    <div class="space-home" *ngIf="!pesquisado"></div>
+
+    <ion-row justify-content-center *ngIf="!pesquisado">
+        <ion-col col-md-6>
+            <ion-card color="card">
+                <ion-card-content>
+                    <ion-row>
+                        <ion-col text-justify>
+                            Bem vindo!
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row>
+                        <ion-col text-justify>
+                            Escolha uma categoria ou todas para sortearmos um filme para você!
+                        </ion-col>
+                    </ion-row>
+
+                </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+
+    <div class="space-home"></div>
+
     <form (ngSubmit)="onRandomButton(f)" #f="ngForm" novalidate>
         <ion-row justify-content-center>
             <ion-col col-md-6>
                 <ion-list>
                     <ion-item>
-                        <ion-label color="select">Genêro</ion-label>
-                        <ion-select [(ngModel)]="generoSelected" [ngModelOptions]="{standalone: true}" cancelText="Cancelar" okText="Selecionar" interface="action-sheet">
-                            <ion-option no-padding *ngFor="let item of generoList; let i = index" value="{{item.id}}">{{ item.nome}}</ion-option>
+                        <ion-label></ion-label>
+                        <ion-select [(ngModel)]="generoSelected" [ngModelOptions]="{standalone: true}" cancelText="Cancelar" placeholder="Categorias" interface="action-sheet">
+                            <ion-option no-padding *ngFor="let item of generoList; let i = index" value="{{item.id}}">{{ item.nome }}</ion-option>
                         </ion-select>
                     </ion-item>
                     <!-- <ion-item>
@@ -34,36 +56,35 @@
 
         <ion-row justify-content-center>
             <ion-col col-md-6>
-                <button ion-button full icon-right type="submit" color="secondary" [disabled]="loader">
-                  SORTEAR FILME
-                  <ion-icon name="videocam"></ion-icon>
+                <button ion-button full icon-right type="submit" color="secondary">
+                  SORTEAR
                 </button>
             </ion-col>
         </ion-row>
 
-        <div class="space-loader" *ngIf="loader"></div>
-
-        <ion-row text-center *ngIf="loader">
-            <ion-col col-12>
-                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
-                <span class="sr-only">Loading...</span>
-            </ion-col>
-        </ion-row>
+        <div class="spacer space-card"></div>
     </form>
 
-    <ion-row *ngIf="randomItem  && randomItem.thumbnails && !loader" justify-content-center>
-        <ion-col col-xl-6>
-            <ion-card color="dark">
-                <ion-card-header color="secondary">
-                    {{ randomItem.title }}
-                </ion-card-header>
+    <ion-row *ngIf="randomItem" justify-content-center>
 
-                <ion-card-content>
-                    <img *ngIf="randomItem.thumbnails" [src]="randomItem.thumbnails.high" class="img-responsive img-thumbnail" alt="randomItem.title">
-                    <ion-row>
-                        <ion-col text-right><button type="button" color="secondary" ion-button clear (click)="onGoToDetalhe()">Ver mais</button></ion-col>
-                    </ion-row>
-                </ion-card-content>
+        <ion-col col-xl-6>
+            <ion-card color="card-filme" (click)="onGoToDetalhe()">
+                <ion-row class="card-filme-home">
+                    <ion-col col-6>
+                        <ion-card-content>
+                            <ion-row class="card-title-1">
+                                FILME SORTEADO:
+                            </ion-row>
+                            <ion-row class="card-title-2" text-justify>
+                                {{ randomItem.title }}
+                            </ion-row>
+                        </ion-card-content>
+                    </ion-col>
+                    <ion-col col-6 class="card-img-bottom">
+                        <img *ngIf="randomItem.thumbnails" [src]="randomItem.thumbnails.high" class="img-responsive img-thumbnail" alt="randomItem.title">
+                        <img *ngIf="!randomItem.thumbnails" src="../../image/imagem-default.png" class="img-responsive img-thumbnail" alt="randomItem.title">
+                    </ion-col>
+                </ion-row>
             </ion-card>
         </ion-col>
     </ion-row>

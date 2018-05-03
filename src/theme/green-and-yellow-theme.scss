@@ -1,8 +1,8 @@
     //Cores
-    $colors: ( primary: #689f38, secondary: rgba(255, 255, 0, 0.685), danger: #f53d3d, light: #f4f4f4, dark: #222, select:#8cb964);
+    $colors: ( primary: #F1C40F, secondary: rgba(255, 255, 0, 0.685), danger: #f53d3d, light: #95a5a6, dark: #222, card:#424242, card-filme:#fff);
     //custom TAG
-    // ion-header {
-    //     .toolbar-background {
+    // button {
+    //     .sortear {
     //         background: linear-gradient( rgba(0, 128, 0, 0.63), rgba(255, 255, 0, 0.562));
     //     }
     // }
@@ -22,24 +22,56 @@
     div::-webkit-scrollbar-thumb {
         border: none;
         width: 0;
-        background: #000;
+        background: #222;
     }
     
-    //Cor texto header
-    $toolbar-md-title-text-color: map-get($colors, "primary");
-    $toolbar-ios-title-text-color: map-get($colors, "primary");
-    $toolbar-wp-title-text-color: map-get($colors, "primary");
+    .card-bem-vindo {
+        font-size: 16px;
+    }
+    
+    .card-filme-home {
+        .card-img-bottom {
+            color: #fff;
+            background-size: cover;
+            padding: 0%;
+        }
+        .card-title-1 {
+            position: absolute;
+            top: 10%;
+            font-size: 100%;
+            color: #313131;
+        }
+        .card-title-2 {
+            position: absolute;
+            top: 30%;
+            font-size: 100%;
+            font-weight: bold;
+            color: #313131;
+        }
+        padding: 0px !important;
+        margin-bottom: 0% !important;
+    }
+    
+    .space-footer {
+        width: auto;
+        height: 10%;
+    }
+    
     //Cor botão header
-    $toolbar-md-button-color: map-get($colors, "primary");
-    $toolbar-ios-button-color: map-get($colors, "primary");
-    $toolbar-wp-button-color: map-get($colors, "primary");
+    // $toolbar-md-button-color: #95a5a6;
+    // $toolbar-ios-button-color: #95a5a6;
+    // $toolbar-wp-button-color: #95a5a6;
+    //Cor texto header
+    // $toolbar-md-title-text-color: #95a5a6;
+    // $toolbar-ios-title-text-color: #95a5a6;
+    // $toolbar-wp-title-text-color: #95a5a6;
     //Cor header
-    $toolbar-background:#222;
+    $toolbar-background:#212121;
     //Cor content
-    $background-color: #000;
-    $background-md-color: #000;
-    $background-ios-color: #000;
-    $background-wp-color: #000;
+    $background-color: #303030;
+    $background-md-color: #303030;
+    $background-ios-color: #303030;
+    $background-wp-color: #303030;
     //Cor select
     $action-sheet-md-background:#222;
     $action-sheet-ios-background:#222;
@@ -57,25 +89,42 @@
     $action-sheet-ios-button-border-color:#222;
     $action-sheet-wp-button-border-color:#222;
     //Cor texto select
-    $action-sheet-md-title-color:#8cb964;
-    $action-sheet-ios-title-color:r#8cb964;
-    $action-sheet-wp-title-color:#8cb964;
-    $action-sheet-md-button-text-color:rgba(255, 255, 0, 0.685);
-    $action-sheet-ios-button-text-color:rgba(255, 255, 0, 0.685);
-    $action-sheet-wp-button-text-color:rgba(255, 255, 0, 0.685);
-    $action-sheet-md-button-destructive-text-color:#8cb964;
-    $action-sheet-ios-button-destructive-text-color:#8cb964;
-    $action-sheet-wp-button-destructive-text-color:#8cb964;
-    $text-color:#689f38;
-    //Cor texto footer
-    $toolbar-md-title-text-color: map-get($colors, "primary");
-    $toolbar-ios-title-text-color: map-get($colors, "primary");
-    $toolbar-wp-title-text-color: map-get($colors, "primary");
+    $action-sheet-md-title-color: #ffffff;
+    $action-sheet-ios-title-color: #ffffff;
+    $action-sheet-wp-title-color: #ffffff;
+    $action-sheet-md-button-text-color:#ffffff;
+    $action-sheet-ios-button-text-color:#ffffff;
+    $action-sheet-wp-button-text-color:#ffffff;
+    $action-sheet-md-button-destructive-text-color:#ffffff;
+    $action-sheet-ios-button-destructive-text-color:#ffffff;
+    $action-sheet-wp-button-destructive-text-color:#ffffff;
+    $text-color:#ffffff;
+    $select-md-placeholder-color:#ffffff;
+    $select-ios-placeholder-color:#ffffff;
+    $select-wp-placeholder-color:#ffffff;
+    //Loading background color
+    $loading-md-background: #212121;
+    $loading-ios-background: #212121;
+    $loading-wp-background: #212121;
+    //Loading text color
+    $loading-md-text-color: #ffffff;
+    $loading-ios-text-color: #ffffff;
+    $loading-wp-text-color: #ffffff;
+    //Loading tamanho
+    $loading-md-max-height: 100%;
+    $loading-ios-max-height: 100%;
+    $loading-wp-max-height: 100%;
+    $loading-md-padding-bottom: 50px;
+    $loading-ios-padding-bottom: 50px;
+    $loading-wp-padding-bottom: 50px;
+    $loading-md-padding-top: 50px;
+    $loading-ios-padding-top: 50px;
+    $loading-wp-padding-top: 50px;
     //Fonts
-    @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:b');
-    $sans-serif: 'Josefin Sans',
-    sans-serif;
-    $font-family-base: $sans-serif;
-    $font-family-ios-base: $sans-serif;
-    $font-family-md-base: $sans-serif;
-    $font-family-wp-base: $sans-serif;
+    // @import url('https://fonts.googleapis.com/css?family=Josefin+Sans:b');
+    // $sans-serif: 'Josefin Sans',
+    // sans-serif;
+    // $font-family-base: $sans-serif;
+    // $font-family-ios-base: $sans-serif;
+    // $font-family-md-base: $sans-serif;
+    // $font-family-wp-base: $sans-serif;

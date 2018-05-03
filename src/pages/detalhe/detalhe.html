@@ -9,9 +9,9 @@
 <ion-content padding>
 
     <ion-row justify-content-center>
-        <ion-col col-lg-6 col-md-12>
+        <ion-col col-md-6>
 
-            <ion-card *ngIf="video" (click)="onOpenVideo()">
+            <ion-card *ngIf="video" color="card">
                 <img *ngIf="video.thumbnails" [src]="video.thumbnails.high">
 
                 <!-- <iframe [src]="video.id | youtube" frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe> -->
@@ -20,13 +20,22 @@
                     <ion-card-title>
                         {{ video.title }}
                     </ion-card-title>
-                    <p>
-                        {{ video.description }}
-                    </p>
+                    <ion-row text-justify>
+                        {{ setDetalheFilme(video.description) }}
+                    </ion-row>
+                    <ion-row justify-content-center>
+                        <ion-col col-md-6>
+                            <button ion-button full icon-right type="button" color="secondary" (click)="onOpenVideo()">
+                              ASSISTIR FILME
+                            </button>
+                        </ion-col>
+                    </ion-row>
 
                 </ion-card-content>
             </ion-card>
 
         </ion-col>
     </ion-row>
+
+    <div class="spacer space-footer" id="detalhe-footer"></div>
 </ion-content>

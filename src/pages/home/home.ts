@@ -1,7 +1,7 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
 
-import { NavController, AlertController, Platform } from 'ionic-angular';
+import { NavController, AlertController, Platform, LoadingController } from 'ionic-angular';
 
 import { DetalhePage } from "../detalhe/detalhe";
 
@@ -9,7 +9,6 @@ import { Playlist } from './../../models/playlist';
 import { PlaylistItem } from '../../models/playlistItem';
 
 import { YoutubeService } from '../../services/youtube';
-import { Video } from '../../models/video';
 
 @Component({
   selector: "page-home",
@@ -19,10 +18,12 @@ export class HomePage {
 
   detalhePage = DetalhePage;
   descricao: string;
-  loader: boolean = false;
   generoSelected = 'TODOS';
   generoList = [{ id: 'TODOS', nome: "Todos" }];
   temItens: boolean = false;
+  categoria: string;
+  pesquisado: boolean = false;
+  loading = this.loadingCtrl.create();
 
   playlists: Playlist[];
   randomItem : PlaylistItem;
@@ -30,7 +31,8 @@ export class HomePage {
   constructor(public navCtrl: NavController,
     private alertCtrl: AlertController,
     private platform: Platform,
-    private youtubeService: YoutubeService) { }
+    private youtubeService: YoutubeService,
+    public loadingCtrl: LoadingController) { }
 
 
   ionViewWillEnter() {
@@ -54,9 +56,9 @@ export class HomePage {
   }
 
   onRandomButton(form: NgForm){
-      this.loader = true;
+    this.pesquisado = true;
 
-    if (! this.playlists) {
+    if (!this.playlists) {
       return;
     }
 
@@ -70,9 +72,6 @@ export class HomePage {
     }
 
     this.recuperarFilme(playlistId);
-
-    if(this.temItens)
-        this.recuperarFilme(playlistId);
   }
 
   // Página de detalhe
@@ -92,11 +91,11 @@ export class HomePage {
   }
 
   recuperarFilme(playlistId){
+    this.showLoading();
     // Recupera um video aleatório na playlist selecionada
     this.youtubeService.getPlaylistItems(playlistId)
     .subscribe(playlistItems => {
 
-        if (playlistItems.length != 0) {
           this.temItens = true;
           this.randomItem = playlistItems[Math.floor(Math.random() * playlistItems.length)];
 
@@ -108,11 +107,24 @@ export class HomePage {
                 this.descricao = this.randomItem.description;
             }
            }
-        }else
-          this.temItens = false;
 
-        this.loader = false;
+        this.hideLoading();
         // console.log(this.randomItem);
       });
+  }
+
+  setCategoria(categoria){
+    this.categoria = categoria;
+  }
+
+  showLoading() {
+    this.loading = this.loadingCtrl.create({
+      content: 'Aguarde'
+    });
+    this.loading.present();
+  }
+
+  hideLoading(){
+    this.loading.dismiss();
   }
 }
