@@ -38,6 +38,24 @@ Habilitar modo desenvolvedor
 $ ionic cordova run android --device
 ```
 
+### Publicando no google play
+
+https://ionicframework.com/docs/v1/guide/publishing.html
+
+```sh
+$ ionic cordova build --release android
+```
+
+Assinar o aplicativo
+
+```sh
+$ keytool -genkey -v -keystore my-release-key.keystore -alias cineflix_key -keyalg RSA -keysize 2048 -validity 10000
+
+$ jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-release-key.keystore platforms/android/build/outputs/apk/android-release-unsigned.apk cineflix_key
+
+$ ~/Library/Android/sdk/build-tools/19.1.0/zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk CineflixBrasik.apk 
+```
+
 
 
 
