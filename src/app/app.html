@@ -3,13 +3,8 @@
 <ion-footer>
     <ion-toolbar>
         <ion-row>
-            <ion-col text-left>
-                <button ion-button clear>
-                    <div>Min. Cultura</div>
-                </button>
-            </ion-col>
             <ion-col text-right>
-                <button (click)="goToSobre()" ion-button clear [disabled]="sobrePageOpened()">
+                <button (click)="goToSobre()" ion-button clear [disabled]="sobrePageOpened()" name="sobre" id="sobre">
                     <div>Sobre</div>
                 </button>
             </ion-col>
