@@ -55,6 +55,7 @@ export class HomePage {
   }
 
   onRandomButton(form: NgForm){
+
     this.pesquisado = true;
 
     if (!this.playlists) {
@@ -70,7 +71,10 @@ export class HomePage {
       playlistId = this.playlists[Math.floor(Math.random() * this.playlists.length)].id;
     }
 
+    this.randomItem = null;
+
     this.recuperarFilme(playlistId);
+
   }
 
   // Página de detalhe
@@ -78,18 +82,7 @@ export class HomePage {
     this.navCtrl.push(DetalhePage, { item: this.randomItem } );
   }
 
-  // Teste deploy
-  showPlatform() {
-    let text = 'I run on: ' + this.platform.platforms();
-    let alert = this.alertCtrl.create({
-      title: 'My Home',
-      subTitle: text,
-      buttons: ['Ok']
-    });
-    alert.present();
-  }
-
-  recuperarFilme(playlistId){
+  recuperarFilme(playlistId) {
 
     this.showLoading();
 

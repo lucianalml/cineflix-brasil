@@ -7,7 +7,6 @@
 </ion-header>
 
 <ion-content padding class="content-cineflix">
-    <!-- <button ion-button (click)="showPlatform()">TEste</button> -->
 
     <div class="space-home" *ngIf="!pesquisado"></div>
 
@@ -44,12 +43,6 @@
                             <ion-option no-padding *ngFor="let item of generoList; let i = index" value="{{item.id}}">{{ item.nome }}</ion-option>
                         </ion-select>
                     </ion-item>
-                    <!-- <ion-item>
-                        <ion-label color="secondary"></ion-label>
-                        <ion-select [(ngModel)]="generoSelected" [ngModelOptions]="{standalone: true}" interface="action-sheet" cancelText="Cancelar" okText="Selecionar">
-                            <ion-option *ngFor="let item of generoList; let i = index" value="{{item.id}}">{{item.nome}}</ion-option>
-                        </ion-select>
-                    </ion-item> -->
                 </ion-list>
             </ion-col>
         </ion-row>
