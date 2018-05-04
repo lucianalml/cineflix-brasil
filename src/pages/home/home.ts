@@ -24,6 +24,14 @@ export class HomePage {
   pesquisado: boolean = false;
   loading = this.loadingCtrl.create();
 
+  frasesLoader = [
+    'Prepare sua pipoca',
+    'Luz, câmera, ação!',
+    'Chame a galera!',
+    'O filme vai começar',
+    'Estamos escolhendo um filme para você',
+  ]
+
   playlists: Playlist[];
   randomItem : PlaylistItem;
 
@@ -99,13 +107,27 @@ export class HomePage {
   }
 
   showLoading() {
+
+     let loaderContent = this.frasesLoader[Math.floor(Math.random() * this.frasesLoader.length)];
+
     this.loading = this.loadingCtrl.create({
-      content: 'Aguarde'
+      content: loaderContent
     });
     this.loading.present();
   }
 
   hideLoading(){
+    this.waitSeconds(3000);
     this.loading.dismiss();
   }
+
+  waitSeconds(iMilliSeconds) {
+    var counter= 0
+        , start = new Date().getTime()
+        , end = 0;
+    while (counter < iMilliSeconds) {
+        end = new Date().getTime();
+        counter = end - start;
+    }
+}
 }
