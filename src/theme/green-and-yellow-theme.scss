@@ -34,19 +34,17 @@
             color: #fff;
             background-size: cover;
             padding: 0%;
+            padding: 0px !important;
+            img {
+                height: 180px;
+            }
         }
-        .card-title-1 {
-            position: absolute;
+        .card-title {
             top: 10%;
-            font-size: 100%;
-            color: #313131;
-        }
-        .card-title-2 {
-            position: absolute;
-            top: 30%;
             font-size: 100%;
             font-weight: bold;
             color: #313131;
+            padding: 2px !important;
         }
         padding: 0px !important;
         margin-bottom: 0% !important;
@@ -136,4 +134,4 @@
     // $font-family-base: $sans-serif;
     // $font-family-ios-base: $sans-serif;
     // $font-family-md-base: $sans-serif;
-    // $font-family-wp-base: $sans-serif;
+    // $font-family-wp-base: $sans-serif
