@@ -72,7 +72,7 @@ export class HomePage {
 
     // Recupera playlists do canal
     this.youtubeService.fetchPlaylistsFromChannel()
-      .do(console.log)
+      // .do(console.log)
       .subscribe((playlists) => {
         this.setData(playlists);
       },
@@ -138,7 +138,7 @@ export class HomePage {
     this.youtubeService.getPlaylistItems(playlistId)
       .first()
       // .filter(item => item !== null) //nao deu certo
-      .do(console.log)
+      // .do(console.log)
       .subscribe(playlistItems => {
 
         playlistItems = playlistItems.filter(item => item !== null);
