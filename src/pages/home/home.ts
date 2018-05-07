@@ -74,7 +74,7 @@ export class HomePage {
     this.youtubeService.fetchPlaylistsFromChannel()
       .do(console.log)
       .subscribe((playlists) => {
-        this.fetchData(playlists);
+        this.setData(playlists);
       },
       error => {
         this.clearData();
@@ -88,7 +88,7 @@ export class HomePage {
     );
   }
 
-  fetchData(playlists: Playlist[]) {
+  setData(playlists: Playlist[]) {
     this.playlists = playlists;
     // Cria lista com gêneros recuperando os títulos das playlists
     this.generoList = [{ id: 'TODOS', nome: "Todos" }];
@@ -101,11 +101,13 @@ export class HomePage {
 
   clearData(){
     this.playlists = null;
-    this.randomItem = null;
     this.generoList = [{ id: 'TODOS', nome: "Todos" }];
+    this.randomItem = null;
   }
 
   onRandomButton(form: NgForm){
+
+    this.randomItem = null;
 
     if (!this.playlists) {
       this.fetchPlaylists();
@@ -118,22 +120,19 @@ export class HomePage {
 
   getRandomMovie() {
 
-    // this.showLoading();
-
+    // Se selecionou um gênero
     let playlistId = this.generoSelected;
 
-    // Fazer a busca em todas as playlists
+    // Se selecionou todos os gêneros recupera filmes de uma playlist aleatória
     if (this.generoSelected == 'TODOS') {
-
-      // Recupera uma playlist aleatória entre todas
       playlistId = this.playlists[Math.floor(Math.random() * this.playlists.length)].id;
     }
 
     // TESTES
-    var playlistSelected = this.playlists.filter(function(item) {
-      return item.id === playlistId;
-    })[0];
-    console.log('Playlist sorteada: ' + playlistSelected.title);
+    // var playlistSelected = this.playlists.filter(function(item) {
+    //   return item.id === playlistId;
+    // })[0];
+    // console.log('Playlist sorteada: ' + playlistSelected.title);
 
     // Recupera um video aleatório na playlist selecionada
     this.youtubeService.getPlaylistItems(playlistId)
@@ -146,11 +145,10 @@ export class HomePage {
 
         this.randomItem = playlistItems[Math.floor(Math.random() * playlistItems.length)];
 
-        this.hideLoading();
-
-        // ???
-        if (!this.randomItem) {
-          this.showLoading();
+        // Se a playlist esta vazia
+        if (this.randomItem) {
+          this.hideLoading();
+        } else {
           this.getRandomMovie();
         }
 
@@ -163,12 +161,7 @@ export class HomePage {
           buttons: ['OK']
         });
         alert.present();
-      },
-      () => {
-        // console.log('escondendo loading');
-        // this.hideLoading();
-      }
-      ;
+      };
   }
 
   // Página de detalhe
