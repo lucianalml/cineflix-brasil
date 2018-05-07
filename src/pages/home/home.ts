@@ -96,6 +96,7 @@ export class HomePage {
 
     // Recupera um video aleatório na playlist selecionada
     this.youtubeService.getPlaylistItems(playlistId)
+      .first()
       .subscribe(playlistItems => {
 
         playlistItems = playlistItems.filter(item => item !== null);
