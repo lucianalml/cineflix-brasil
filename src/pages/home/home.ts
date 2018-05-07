@@ -112,10 +112,13 @@ export class HomePage {
       return;
     }
     this.pesquisado = true;
+    this.showLoading();
     this.getRandomMovie();
   }
 
   getRandomMovie() {
+
+    // this.showLoading();
 
     let playlistId = this.generoSelected;
 
@@ -132,18 +135,25 @@ export class HomePage {
     })[0];
     console.log('Playlist sorteada: ' + playlistSelected.title);
 
-    this.showLoading();
-
     // Recupera um video aleatório na playlist selecionada
     this.youtubeService.getPlaylistItems(playlistId)
       .first()
+      // .filter(item => item !== null) //nao deu certo
       .do(console.log)
       .subscribe(playlistItems => {
 
         playlistItems = playlistItems.filter(item => item !== null);
 
         this.randomItem = playlistItems[Math.floor(Math.random() * playlistItems.length)];
+
         this.hideLoading();
+
+        // ???
+        if (!this.randomItem) {
+          this.showLoading();
+          this.getRandomMovie();
+        }
+
       }),
       error => {
         this.hideLoading();
@@ -153,7 +163,12 @@ export class HomePage {
           buttons: ['OK']
         });
         alert.present();
-      };
+      },
+      () => {
+        // console.log('escondendo loading');
+        // this.hideLoading();
+      }
+      ;
   }
 
   // Página de detalhe
