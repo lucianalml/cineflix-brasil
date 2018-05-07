@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
 
 import { NavController, AlertController, Platform, LoadingController } from 'ionic-angular';
+import { Network } from '@ionic-native/network';
+
+import { Observable } from "rxjs/Rx";
 
 import { DetalhePage } from '../detalhe/detalhe';
 
@@ -33,42 +36,83 @@ export class HomePage {
   ]
 
   playlists: Playlist[];
+  // playlists$: Observable<Playlist[]>;
+
   randomItem : PlaylistItem;
 
   constructor(public navCtrl: NavController,
     private alertCtrl: AlertController,
     private platform: Platform,
+    private network: Network,
     private youtubeService: YoutubeService,
     public loadingCtrl: LoadingController) { }
 
 
   ionViewWillEnter() {
+    this.fetchPlaylists();
+
+    // watch network for a disconnect
+    let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+      this.clearData();
+    });
+
+    // stop disconnect watch
+    // disconnectSubscription.unsubscribe();
+
+    // watch network for a connection
+    let connectSubscription = this.network.onConnect().subscribe(() => {
+      this.fetchPlaylists();
+    });
+
+    // stop connect watch
+    // connectSubscription.unsubscribe();
+  }
+
+  fetchPlaylists() {
 
     // Recupera playlists do canal
-    this.youtubeService.fetchPlaylistsFromChannel().subscribe((playlists) => {
-
-        this.playlists = playlists;
-
-        // Cria lista com gêneros recuperando os títulos das playlists
-        this.generoList = [{ id: 'TODOS', nome: "Todos" }];
-        for (let i = 0; i < this.playlists.length; i++) {
-          this.generoList.push({id: this.playlists[i].id,
-                                nome: this.playlists[i].title  ? this.playlists[i].title : "Sem titilo" });
-        }
+    this.youtubeService.fetchPlaylistsFromChannel()
+      // .do(console.log)
+      .subscribe((playlists) => {
+        this.fetchData(playlists);
       },
       error => {
-        console.log(error.json());
+        this.clearData();
+        let alert = this.alertCtrl.create({
+          title: 'Erro',
+          subTitle: 'Não foi possível buscar os filmes. Verifique sua internet e tente novamente.',
+          buttons: ['OK']
+        });
+        alert.present();
       }
     );
   }
 
+  fetchData(playlists: Playlist[]) {
+    this.playlists = playlists;
+    // Cria lista com gêneros recuperando os títulos das playlists
+    this.generoList = [{ id: 'TODOS', nome: "Todos" }];
+    for (let i = 0; i < playlists.length; i++) {
+      this.generoList.push({id: playlists[i].id,
+                            nome: playlists[i].title  ? playlists[i].title : "Sem titilo" });
+    }
+
+  }
+
+  clearData(){
+    this.playlists = null;
+    this.randomItem = null;
+    this.generoList = [{ id: 'TODOS', nome: "Todos" }];
+  }
+
   onRandomButton(form: NgForm){
 
-    this.pesquisado = true;
-
     if (!this.playlists) {
+      this.fetchPlaylists();
       return;
     }
+
+    this.pesquisado = true;
 
     let playlistId = this.generoSelected;
 
@@ -79,32 +123,35 @@ export class HomePage {
       playlistId = this.playlists[Math.floor(Math.random() * this.playlists.length)].id;
     }
 
-    this.randomItem = null;
-
-    this.recuperarFilme(playlistId);
-
-  }
-
-  // Página de detalhe
-  onGoToDetalhe() {
-    this.navCtrl.push(DetalhePage, { item: this.randomItem } );
-  }
-
-  recuperarFilme(playlistId) {
-
     this.showLoading();
 
     // Recupera um video aleatório na playlist selecionada
     this.youtubeService.getPlaylistItems(playlistId)
       .first()
+      .do(console.log)
       .subscribe(playlistItems => {
 
         playlistItems = playlistItems.filter(item => item !== null);
 
         this.randomItem = playlistItems[Math.floor(Math.random() * playlistItems.length)];
-
         this.hideLoading();
-      });
+      }),
+      error => {
+        this.hideLoading();
+        let alert = this.alertCtrl.create({
+          title: 'Erro',
+          subTitle: 'Erro ao buscar filme.',
+          buttons: ['OK']
+        });
+        alert.present();
+      };
+
+  }
+
+
+  // Página de detalhe
+  onGoToDetalhe() {
+    this.navCtrl.push(DetalhePage, { item: this.randomItem } );
   }
 
   showLoading() {
