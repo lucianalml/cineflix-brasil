@@ -72,7 +72,7 @@ export class HomePage {
 
     // Recupera playlists do canal
     this.youtubeService.fetchPlaylistsFromChannel()
-      // .do(console.log)
+      .do(console.log)
       .subscribe((playlists) => {
         this.fetchData(playlists);
       },
@@ -111,8 +111,11 @@ export class HomePage {
       this.fetchPlaylists();
       return;
     }
-
     this.pesquisado = true;
+    this.getRandomMovie();
+  }
+
+  getRandomMovie() {
 
     let playlistId = this.generoSelected;
 
@@ -122,6 +125,12 @@ export class HomePage {
       // Recupera uma playlist aleatória entre todas
       playlistId = this.playlists[Math.floor(Math.random() * this.playlists.length)].id;
     }
+
+    // TESTES
+    var playlistSelected = this.playlists.filter(function(item) {
+      return item.id === playlistId;
+    })[0];
+    console.log('Playlist sorteada: ' + playlistSelected.title);
 
     this.showLoading();
 
@@ -145,9 +154,7 @@ export class HomePage {
         });
         alert.present();
       };
-
   }
-
 
   // Página de detalhe
   onGoToDetalhe() {

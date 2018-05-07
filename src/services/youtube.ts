@@ -53,6 +53,7 @@ export class YoutubeService {
   fetchPlaylistsFromChannel() {
     return this.http.get('https://www.googleapis.com/youtube/v3/playlists?channelId='
       + this.channelId
+      + '&maxResults=50'
       + '&part=snippet&key='
       + this.apiKey)
       .map(this.extractPlaylists);
@@ -68,6 +69,7 @@ export class YoutubeService {
     getPlaylistItems(playlistId: string){
       return this.http.get('https://www.googleapis.com/youtube/v3/playlistItems?playlistId='
         + playlistId
+        + '&maxResults=50'
         + '&part=snippet&key='
         + this.apiKey)
         .map(this.extractPlaylistItems);
