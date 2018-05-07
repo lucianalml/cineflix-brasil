@@ -41,16 +41,18 @@ export class DetalhePage {
 
   onOpenVideo(){
 
-    // // console.log(this.video);
-    if (this.platform.is('cordova')) {
-      // this.youtube.openVideo(this.video.id);
-      window.open('https://www.youtube.com/watch?v=' + this.video.id, "_system", "location=yes");
-    } else {
-      window.open('https://www.youtube.com/watch?v=' + this.video.id);
-    }
+      const videoUrl = 'https://www.youtube.com/watch?v=' + this.video.id;
+      // const videoUrl = 'https://www.youtube.com/v=' + this.video.id;
+      // const videoUrl = 'https://www.youtube.com/watch_popup?v=' + this.video.id;
+      // const videoUrl = 'https://www.youtube.com/embed/' + this.video.id;
 
-    // window.open('https://www.youtube.com/watch?v=' + this.video.id);
-    // window.open('https://www.youtube.com/watch?v=' + this.video.id);
+      // window.open(videoUrl);
+
+    if (this.platform.is('cordova')) {
+      window.open(videoUrl, "_system");
+    } else {
+      window.open(videoUrl);
+    }
 
   }
 
