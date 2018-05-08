@@ -174,7 +174,12 @@ export class HomePage {
      let loaderContent = this.frasesLoader[Math.floor(Math.random() * this.frasesLoader.length)];
 
     this.loading = this.loadingCtrl.create({
-      content: loaderContent
+      spinner: 'hide',
+      content: `
+        <ion-row>
+          <div class="roulette"></div>
+        </ion-row>
+        <ion-row>` + loaderContent + `</ion-row>`
     });
     this.loading.present();
   }

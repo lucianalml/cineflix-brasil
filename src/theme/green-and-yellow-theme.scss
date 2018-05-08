@@ -59,6 +59,37 @@
         background: linear-gradient(left, #00610B, rgb(201, 204, 1));
         color: #ffffff !important;
     }
+    /* Safari */
+    
+    @-webkit-keyframes spin {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    
+    .roulette {
+        margin: 10%;
+        width: 100px;
+        height: 75px;
+        background-size: 100%;
+        background-image: url('../assets/imgs/roulette.png');
+        border-radius: 100px;
+        /* Safari */
+        -webkit-animation: spin 1s linear infinite;
+        animation: spin 1s linear infinite;
+    }
     
     //Cor texto botão
     // $button-md-text-color: #FFFFFF;
