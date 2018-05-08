@@ -80,15 +80,27 @@
     }
     
     .roulette {
+        align-content: center;
         margin: 10%;
         width: 100px;
         height: 75px;
+        top: 60px;
+        left: 105px;
         background-size: 100%;
         background-image: url('../assets/imgs/roulette.png');
-        border-radius: 100px;
         /* Safari */
-        -webkit-animation: spin 1s linear infinite;
-        animation: spin 1s linear infinite;
+        -webkit-animation: spin 1s linear;
+        animation: spin 1s linear;
+    }
+    
+    .pointer {
+        position: absolute;
+        top: 60px;
+        left: 105px;
+        align-content: center;
+        border-left: 6px solid transparent;
+        border-right: 6px solid transparent;
+        border-top: 10px solid #00610B;
     }
     
     //Cor texto botão

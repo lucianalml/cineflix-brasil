@@ -4,8 +4,6 @@ import { NgForm } from "@angular/forms";
 import { NavController, AlertController, Platform, LoadingController } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
 
-import { Observable } from "rxjs/Rx";
-
 import { DetalhePage } from '../detalhe/detalhe';
 
 import { Playlist } from './../../models/playlist';
@@ -176,10 +174,11 @@ export class HomePage {
     this.loading = this.loadingCtrl.create({
       spinner: 'hide',
       content: `
-        <ion-row>
-          <div class="roulette"></div>
-        </ion-row>
-        <ion-row>` + loaderContent + `</ion-row>`
+        <div justify-content-center class="container">
+        <div class="roulette"></div>
+        <div class="pointer"></div>
+        </div>
+        <ion-row justify-content-center><ion-col>` + loaderContent + `</ion-col></ion-row>`
     });
     this.loading.present();
   }
