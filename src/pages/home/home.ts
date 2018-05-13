@@ -10,12 +10,16 @@ import { Playlist } from './../../models/playlist';
 import { PlaylistItem } from '../../models/playlistItem';
 
 import { YoutubeService } from '../../services/youtube';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
 })
 export class HomePage {
+
+  connectSubscription: Subscription;
+  disconnectSubscription: Subscription;
 
   detalhePage = DetalhePage;
 
@@ -36,9 +40,9 @@ export class HomePage {
   onLoader: boolean = false;
 
   playlists: Playlist[];
-  // playlists$: Observable<Playlist[]>;
-
   randomItem : PlaylistItem;
+
+  requestCounter: number;
 
   constructor(public navCtrl: NavController,
     private alertCtrl: AlertController,
@@ -48,23 +52,23 @@ export class HomePage {
 
 
   ionViewWillEnter() {
+
     this.fetchPlaylists();
 
     // watch network for a disconnect
-    let disconnectSubscription = this.network.onDisconnect().subscribe(() => {
+    this.disconnectSubscription = this.network.onDisconnect().subscribe(() => {
       this.clearData();
     });
 
-    // stop disconnect watch
-    // disconnectSubscription.unsubscribe();
-
     // watch network for a connection
-    let connectSubscription = this.network.onConnect().subscribe(() => {
+    this.connectSubscription = this.network.onConnect().subscribe(() => {
       this.fetchPlaylists();
     });
+  }
 
-    // stop connect watch
-    // connectSubscription.unsubscribe();
+  ionViewWillLeave() {
+    this.disconnectSubscription.unsubscribe();
+    this.connectSubscription.unsubscribe();
   }
 
   fetchPlaylists() {
@@ -77,14 +81,19 @@ export class HomePage {
       },
       error => {
         this.clearData();
-        let alert = this.alertCtrl.create({
-          title: 'Erro',
-          subTitle: 'Não foi possível buscar os filmes. Verifique sua internet e tente novamente.',
-          buttons: ['OK']
-        });
-        alert.present();
+        this.showAlert('Erro',
+          'Não foi possível buscar os filmes. Verifique sua internet e tente novamente.');
       }
     );
+  }
+
+  showAlert(title: string, subtitle: string) {
+    let alert = this.alertCtrl.create({
+      title: title,
+      subTitle: subtitle,
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
   setData(playlists: Playlist[]) {
@@ -107,6 +116,7 @@ export class HomePage {
   onRandomButton(form: NgForm){
 
     this.randomItem = null;
+    this.requestCounter = 0;
 
     if (!this.playlists) {
       this.fetchPlaylists();
@@ -119,6 +129,14 @@ export class HomePage {
 
   getRandomMovie() {
 
+    this.requestCounter ++;
+
+    if ( this.requestCounter > 5 ) {
+      this.hideLoading();
+      this.showAlert('Erro', 'Não foram encontrados filmes nessa categoria.');
+      return;
+    }
+
     // Se selecionou um gênero
     let playlistId = this.generoSelected;
 
@@ -127,26 +145,19 @@ export class HomePage {
       playlistId = this.playlists[Math.floor(Math.random() * this.playlists.length)].id;
     }
 
-    // TESTES
-    // var playlistSelected = this.playlists.filter(function(item) {
-    //   return item.id === playlistId;
-    // })[0];
-    // console.log('Playlist sorteada: ' + playlistSelected.title);
-
     // Recupera um video aleatório na playlist selecionada
     this.youtubeService.getPlaylistItems(playlistId)
       .first()
-      // .filter(item => item !== null) //nao deu certo
-      // .do(console.log)
       .subscribe(playlistItems => {
 
         playlistItems = playlistItems.filter(item => item !== null);
 
         this.randomItem = playlistItems[Math.floor(Math.random() * playlistItems.length)];
 
-        // Se a playlist esta vazia
+        // Se encontrou algum filme
         if (this.randomItem) {
           this.hideLoading();
+        // Se não encontrou filme nessa playlist busca novamente
         } else {
           this.getRandomMovie();
         }
@@ -154,12 +165,7 @@ export class HomePage {
       }),
       error => {
         this.hideLoading();
-        let alert = this.alertCtrl.create({
-          title: 'Erro',
-          subTitle: 'Erro ao buscar filme.',
-          buttons: ['OK']
-        });
-        alert.present();
+        this.showAlert('Erro', 'Erro ao buscar filme.');
       };
   }
 
@@ -169,8 +175,24 @@ export class HomePage {
   }
 
   showLoading() {
+<<<<<<< HEAD
     this.loaderContent = this.frasesLoader[Math.floor(Math.random() * this.frasesLoader.length)];
     this.onLoader = true;
+=======
+
+    let loaderContent = this.frasesLoader[Math.floor(Math.random() * this.frasesLoader.length)];
+
+    this.loading = this.loadingCtrl.create({
+      spinner: 'hide',
+      content: `
+        <div justify-content-center class="container">
+        <div class="roulette"></div>
+        <div class="pointer"></div>
+        </div>
+        <ion-row justify-content-center><ion-col>` + loaderContent + `</ion-col></ion-row>`
+    });
+    this.loading.present();
+>>>>>>> ce89562cc435dd0afe420ff2d7b7f00c92fa432a
   }
 
   hideLoading(){
@@ -179,12 +201,13 @@ export class HomePage {
   }
 
   waitSeconds(iMilliSeconds) {
-    var counter= 0
-        , start = new Date().getTime()
-        , end = 0;
+    var counter = 0,
+      start = new Date().getTime(),
+      end = 0;
+
     while (counter < iMilliSeconds) {
-        end = new Date().getTime();
-        counter = end - start;
+      end = new Date().getTime();
+      counter = end - start;
     }
   }
 }
