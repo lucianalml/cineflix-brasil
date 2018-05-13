@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
 
-import { NavController, AlertController, Platform, LoadingController } from 'ionic-angular';
+import { NavController, AlertController, Platform } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
 
 import { DetalhePage } from '../detalhe/detalhe';
@@ -23,7 +23,7 @@ export class HomePage {
   generoList = [{ id: 'TODOS', nome: "Todos" }];
 
   pesquisado: boolean = false;
-  loading = this.loadingCtrl.create();
+  // loading = this.loadingCtrl.create();
 
   frasesLoader = [
     'Prepare sua pipoca',
@@ -31,7 +31,9 @@ export class HomePage {
     'Chame a galera!',
     'O filme vai começar',
     'Estamos escolhendo um filme para você',
-  ]
+  ];
+  loaderContent: string;
+  onLoader: boolean = false;
 
   playlists: Playlist[];
   // playlists$: Observable<Playlist[]>;
@@ -42,8 +44,7 @@ export class HomePage {
     private alertCtrl: AlertController,
     private platform: Platform,
     private network: Network,
-    private youtubeService: YoutubeService,
-    public loadingCtrl: LoadingController) { }
+    private youtubeService: YoutubeService) { }
 
 
   ionViewWillEnter() {
@@ -168,24 +169,13 @@ export class HomePage {
   }
 
   showLoading() {
-
-     let loaderContent = this.frasesLoader[Math.floor(Math.random() * this.frasesLoader.length)];
-
-    this.loading = this.loadingCtrl.create({
-      spinner: 'hide',
-      content: `
-        <div justify-content-center class="container">
-        <div class="roulette"></div>
-        <div class="pointer"></div>
-        </div>
-        <ion-row justify-content-center><ion-col>` + loaderContent + `</ion-col></ion-row>`
-    });
-    this.loading.present();
+    this.loaderContent = this.frasesLoader[Math.floor(Math.random() * this.frasesLoader.length)];
+    this.onLoader = true;
   }
 
   hideLoading(){
     this.waitSeconds(3000);
-    this.loading.dismiss();
+    this.onLoader = false;
   }
 
   waitSeconds(iMilliSeconds) {
@@ -196,5 +186,5 @@ export class HomePage {
         end = new Date().getTime();
         counter = end - start;
     }
-}
+  }
 }

@@ -36,7 +36,7 @@
             padding: 0%;
             padding: 0px !important;
             img {
-                height: 180px;
+                height: 170px;
             }
         }
         .card-title {
@@ -79,28 +79,82 @@
         }
     }
     
-    .roulette {
-        align-content: center;
-        margin: 10%;
-        width: 100px;
-        height: 75px;
-        top: 60px;
-        left: 105px;
-        background-size: 100%;
-        background-image: url('../assets/imgs/roulette.png');
-        /* Safari */
-        -webkit-animation: spin 1s linear;
-        animation: spin 1s linear;
+    .container {
+        padding-bottom: 0px !important;
     }
     
-    .pointer {
+    .roulette-initial {
+        margin: auto;
+        position: relative;
+        width: 201px;
+        height: 201px;
+        background-color: red;
+        background-size: 100%;
+        background-image: url('../assets/imgs/roulette.png');
+        border-radius: 201px;
+        alt: "Loading";
+    }
+    
+    .roulette {
+        margin: auto;
+        position: relative;
+        width: 201px;
+        height: 201px;
+        background-color: red;
+        background-size: 100%;
+        background-image: url('../assets/imgs/roulette.png');
+        border-radius: 201px;
+        /* Safari */
+        -webkit-animation: spin 2s linear;
+        animation: spin 2s linear;
+        alt: "Loading";
+    }
+    
+    .spinner {
+        margin: auto;
+        position: relative;
+        cursor: pointer;
+        color: red;
+        font-weight: bold;
+        border: none;
+        width: 50px;
+        height: 50px;
+        top: -120px;
+        border-radius: 100%;
+        z-index: 1000;
+        background: rgb(201, 204, 1);
+    }
+    
+    .spinner .pointer {
         position: absolute;
-        top: 60px;
-        left: 105px;
-        align-content: center;
-        border-left: 6px solid transparent;
-        border-right: 6px solid transparent;
-        border-top: 10px solid #00610B;
+        width: 0;
+        height: 0;
+        top: -8px;
+        left: 15px;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 10px solid rgb(201, 204, 1);
+    }
+    
+    .loader-legenda {
+        position: absolute;
+        bottom: -5%;
+    }
+    
+    ion-list {
+        width: 100% !important;
+        .select-md {
+            padding-left: 0px !important;
+            padding-right: 5px !important;
+        }
+        ion-select {
+            max-width: 100% !important;
+            width: 100% !important;
+        }
+    }
+    
+    .card-md {
+        width: 100% !important;
     }
     
     //Cor texto botão
@@ -177,4 +231,4 @@
     // $font-family-base: $sans-serif;
     // $font-family-ios-base: $sans-serif;
     // $font-family-md-base: $sans-serif;
-    // $font-family-wp-base: $sans-serif
+    // $font-family-wp-base: $sans-serifserif
