@@ -175,24 +175,8 @@ export class HomePage {
   }
 
   showLoading() {
-<<<<<<< HEAD
     this.loaderContent = this.frasesLoader[Math.floor(Math.random() * this.frasesLoader.length)];
     this.onLoader = true;
-=======
-
-    let loaderContent = this.frasesLoader[Math.floor(Math.random() * this.frasesLoader.length)];
-
-    this.loading = this.loadingCtrl.create({
-      spinner: 'hide',
-      content: `
-        <div justify-content-center class="container">
-        <div class="roulette"></div>
-        <div class="pointer"></div>
-        </div>
-        <ion-row justify-content-center><ion-col>` + loaderContent + `</ion-col></ion-row>`
-    });
-    this.loading.present();
->>>>>>> ce89562cc435dd0afe420ff2d7b7f00c92fa432a
   }
 
   hideLoading(){
