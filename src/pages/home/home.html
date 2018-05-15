@@ -80,6 +80,10 @@
     </ion-row>
 
     <div *ngIf="onLoader && pesquisado">
+        <div text-center>
+            <ion-label> {{ loaderContent }} </ion-label>
+        </div>
+
         <ion-row justify-content-center>
             <ion-col col-10 class="container">
                 <div class="roulette"></div>
@@ -88,9 +92,6 @@
                 </div>
             </ion-col>
         </ion-row>
-        <div text-center>
-            <ion-label> {{ loaderContent }} </ion-label>
-        </div>
     </div>
 
     <div class="spacer space-footer" id="home-footer"></div>
