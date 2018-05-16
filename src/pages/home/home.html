@@ -39,7 +39,7 @@
                 <ion-list name="categoria" id="categoria">
                     <ion-item>
                         <ion-label></ion-label>
-                        <ion-select [(ngModel)]="generoSelected" [ngModelOptions]="{standalone: true}" cancelText="Voltar" placeholder="Categorias" interface="action-sheet">
+                        <ion-select [(ngModel)]="generoSelected" [ngModelOptions]="{standalone: true}" cancelText="Voltar" placeholder="Categorias" interface="popover">
                             <ion-option no-padding *ngFor="let item of generoList; let i = index" value="{{item.id}}">{{ item.nome }}</ion-option>
                         </ion-select>
                     </ion-item>
