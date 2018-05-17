@@ -63,13 +63,14 @@
     .roulette {
         margin: auto;
         position: relative;
+        border-radius: 201px;
+        background-image: url('../assets/imgs/roulette.png');
+        border: none;
         width: 201px;
         height: 201px;
-        background-color: red;
         background-size: 100%;
-        background-image: url('../assets/imgs/roulette.png');
-        border-radius: 201px;
         alt: "Loading";
+        background-color: #303030;
     }
     
     .spinner {
