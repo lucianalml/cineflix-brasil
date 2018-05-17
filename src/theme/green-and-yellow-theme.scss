@@ -59,29 +59,6 @@
         background: linear-gradient(left, #00610B, rgb(201, 204, 1));
         color: #ffffff !important;
     }
-    /* Safari */
-    
-    @-webkit-keyframes spin {
-        0% {
-            -webkit-transform: rotate(0deg);
-        }
-        100% {
-            -webkit-transform: rotate(450deg);
-        }
-    }
-    
-    @keyframes spin {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(450deg);
-        }
-    }
-    
-    .container {
-        padding-bottom: 0px !important;
-    }
     
     .roulette {
         margin: auto;
@@ -92,9 +69,6 @@
         background-size: 100%;
         background-image: url('../assets/imgs/roulette.png');
         border-radius: 201px;
-        /* Safari */
-        -webkit-animation: spin 3s;
-        animation: spin 3s;
         alt: "Loading";
     }
     
@@ -127,6 +101,306 @@
     .loader-legenda {
         position: absolute;
         bottom: -5%;
+    }
+    /* Safari */
+    
+    @-webkit-keyframes spin-360 {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+    
+    @keyframes spin-360 {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    
+    .roulette-360 {
+        /* Safari */
+        -webkit-animation: spin-360 3s;
+        animation: spin-360 3s;
+    }
+    /* Safari */
+    
+    @-webkit-keyframes spin-30 {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(30deg);
+        }
+    }
+    
+    @keyframes spin-30 {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(30deg);
+        }
+    }
+    
+    .roulette-30 {
+        /* Safari */
+        -webkit-animation: spin-30 3s;
+        animation: spin-30 3s;
+    }
+    /* Safari */
+    
+    @-webkit-keyframes spin-60 {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(60deg);
+        }
+    }
+    
+    @keyframes spin-60 {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(60deg);
+        }
+    }
+    
+    .roulette-60 {
+        /* Safari */
+        -webkit-animation: spin-60 3s;
+        animation: spin-60 3s;
+    }
+    /* Safari */
+    
+    @-webkit-keyframes spin-90 {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(90deg);
+        }
+    }
+    
+    @keyframes spin-90 {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(90deg);
+        }
+    }
+    
+    .roulette-90 {
+        /* Safari */
+        -webkit-animation: spin-90 3s;
+        animation: spin-90 3s;
+    }
+    /* Safari */
+    
+    @-webkit-keyframes spin-120 {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(120deg);
+        }
+    }
+    
+    @keyframes spin-120 {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(120deg);
+        }
+    }
+    
+    .roulette-120 {
+        /* Safari */
+        -webkit-animation: spin-120 3s;
+        animation: spin-120 3s;
+    }
+    /* Safari */
+    
+    @-webkit-keyframes spin-150 {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(150deg);
+        }
+    }
+    
+    @keyframes spin-150 {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(150deg);
+        }
+    }
+    
+    .roulette-150 {
+        /* Safari */
+        -webkit-animation: spin-150 3s;
+        animation: spin-150 3s;
+    }
+    /* Safari */
+    
+    @-webkit-keyframes spin-180 {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(180deg);
+        }
+    }
+    
+    @keyframes spin-180 {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(180deg);
+        }
+    }
+    
+    .roulette-180 {
+        /* Safari */
+        -webkit-animation: spin-180 3s;
+        animation: spin-180 3s;
+    }
+    /* Safari */
+    
+    @-webkit-keyframes spin-210 {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(210deg);
+        }
+    }
+    
+    @keyframes spin-210 {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(210deg);
+        }
+    }
+    
+    .roulette-210 {
+        /* Safari */
+        -webkit-animation: spin-210 3s;
+        animation: spin-210 3s;
+    }
+    /* Safari */
+    
+    @-webkit-keyframes spin-240 {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(240deg);
+        }
+    }
+    
+    @keyframes spin-240 {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(240deg);
+        }
+    }
+    
+    .roulette-240 {
+        /* Safari */
+        -webkit-animation: spin-240 3s;
+        animation: spin-240 3s;
+    }
+    /* Safari */
+    
+    @-webkit-keyframes spin-270 {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(270deg);
+        }
+    }
+    
+    @keyframes spin-270 {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(270deg);
+        }
+    }
+    
+    .roulette-270 {
+        /* Safari */
+        -webkit-animation: spin-270 3s;
+        animation: spin-270 3s;
+    }
+    /* Safari */
+    
+    @-webkit-keyframes spin-300 {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(300deg);
+        }
+    }
+    
+    @keyframes spin-300 {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(300deg);
+        }
+    }
+    
+    .roulette-300 {
+        /* Safari */
+        -webkit-animation: spin-300 3s;
+        animation: spin-300 3s;
+    }
+    /* Safari */
+    
+    @-webkit-keyframes spin-330 {
+        0% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(330deg);
+        }
+    }
+    
+    @keyframes spin-330 {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(330deg);
+        }
+    }
+    
+    .roulette-330 {
+        /* Safari */
+        -webkit-animation: spin-330 3s;
+        animation: spin-330 3s;
     }
     
     ion-list {
