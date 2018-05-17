@@ -36,6 +36,22 @@ export class HomePage {
     'O filme vai começar',
     'Estamos escolhendo um filme para você',
   ];
+  roletaVoltaList = [
+    "roulette-360",
+    "roulette-390",
+    "roulette-420",
+    "roulette-450",
+    "roulette-480",
+    "roulette-510",
+    "roulette-540",
+    "roulette-570",
+    "roulette-600",
+    "roulette-630",
+    "roulette-660",
+    "roulette-690"
+  ];
+  roletaVolta: string;
+  comparar: string;
   loaderContent: string;
   onLoader: boolean = false;
 
@@ -175,6 +191,8 @@ export class HomePage {
   }
 
   showLoading() {
+    this.comparar = this.roletaVolta;
+    this.roletaVolta = this.roletaVoltaList[Math.floor(Math.random() * this.roletaVoltaList.length)];
     this.loaderContent = this.frasesLoader[Math.floor(Math.random() * this.frasesLoader.length)];
     this.onLoader = true;
   }

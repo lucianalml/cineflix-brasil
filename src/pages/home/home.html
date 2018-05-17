@@ -81,12 +81,12 @@
 
     <div *ngIf="onLoader && pesquisado">
         <div text-center>
-            <ion-label> {{ loaderContent }} </ion-label>
+            <ion-label> {{ loaderContent }} - {{ roletaVolta }}</ion-label>
         </div>
 
         <ion-row justify-content-center>
             <ion-col col-10 class="container">
-                <div class="roulette"></div>
+                <div class="roulette {{ roletaVolta }}"></div>
                 <div class="spinner">
                     <div class="pointer"></div>
                 </div>
