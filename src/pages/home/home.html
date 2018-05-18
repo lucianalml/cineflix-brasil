@@ -55,7 +55,7 @@
             </ion-col>
         </ion-row>
 
-        <div class="spacer space-card"></div>
+        <div *ngIf="(randomItem || !onLoader) && pesquisado" class="spacer space-card"></div>
     </form>
 
     <ion-row *ngIf="(randomItem || !onLoader) && pesquisado" justify-content-center>
