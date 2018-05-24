@@ -72,7 +72,7 @@
                     </ion-col>
                     <ion-col col-6 class="card-img-bottom">
                         <img *ngIf="randomItem.thumbnails" [src]="randomItem.thumbnails.high" class="img-responsive img-thumbnail" alt="{{randomItem.title}}">
-                        <img *ngIf="!randomItem.thumbnails" src="../../assets/imgs/imagem-default.png" class="img-responsive img-thumbnail" alt="{{randomItem.title}}">
+                        <img *ngIf="!randomItem.thumbnails" src="assets/imgs/imagem-default.png" class="img-responsive img-thumbnail" alt="{{randomItem.title}}">
                     </ion-col>
                 </ion-row>
             </ion-card>
@@ -86,7 +86,9 @@
 
         <ion-row justify-content-center>
             <ion-col col-10 class="container">
-                <div class="roulette {{ roletaVolta }}"></div>
+                <div text-center alt="Roleta de sorteio">
+                    <img src="assets/imgs/roulette.png" class="roulette {{ roletaVolta }}" alt="Roleta de sorteio">
+                </div>
                 <div class="spinner">
                     <div class="pointer"></div>
                 </div>
