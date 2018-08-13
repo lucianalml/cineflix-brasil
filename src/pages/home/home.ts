@@ -24,7 +24,7 @@ export class HomePage {
   detalhePage = DetalhePage;
 
   generoSelected = 'TODOS';
-  generoList = [{ id: 'TODOS', nome: "Todos" }];
+  generoList = [{ id: 'TODOS', nome: "Todos", cod: 0 }];
 
   pesquisado: boolean = false;
   // loading = this.loadingCtrl.create();
@@ -115,17 +115,26 @@ export class HomePage {
   setData(playlists: Playlist[]) {
     this.playlists = playlists;
     // Cria lista com gêneros recuperando os títulos das playlists
-    this.generoList = [{ id: 'TODOS', nome: "Todos" }];
+    this.generoList = [{ id: 'TODOS', nome: "Todos", cod: 0 }];
     for (let i = 0; i < playlists.length; i++) {
       this.generoList.push({id: playlists[i].id,
-                            nome: playlists[i].title  ? playlists[i].title : "Sem titilo" });
+                            nome: playlists[i].title  ? playlists[i].title : "Sem titilo",
+                            cod: 100  });
     }
 
+    this.setCodCategoria();
+    this.generoList.sort((n1,n2) => {
+
+      if(((n1.cod == 100 || n2.cod == 100) && n1.nome < n2.nome) || n1.cod < n2.cod)
+        return -1;
+      else if (((n1.cod == 100 || n2.cod == 100) && n1.nome > n2.nome) || n1.cod > n2.cod)
+        return 1;
+    });
   }
 
   clearData(){
     this.playlists = null;
-    this.generoList = [{ id: 'TODOS', nome: "Todos" }];
+    this.generoList = [{ id: 'TODOS', nome: "Todos", cod: 0 }];
     this.randomItem = null;
   }
 
@@ -211,5 +220,14 @@ export class HomePage {
       end = new Date().getTime();
       counter = end - start;
     }
+  }
+
+  setCodCategoria(){
+    this.generoList.forEach(item =>{
+      let descricao1 = item.nome.substring(0, item.nome.length - 3);
+      let descricao2 = item.nome.substring(0, item.nome.length - 5);
+      if(descricao1 == "Anos" || descricao2 == "Anos")
+        item.cod = Number(item.nome.replace("Anos ", ""));
+    });
   }
 }
