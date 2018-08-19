@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Network } from '@ionic-native/network';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 import { HttpModule } from '@angular/http';
 
@@ -40,6 +41,7 @@ import { YoutubePipe } from '../pipes/youtube/youtube';
     StatusBar,
     SplashScreen,
     Network,
+    GoogleAnalytics,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     YoutubeService
   ]
