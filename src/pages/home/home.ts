@@ -12,8 +12,6 @@ import { PlaylistItem } from '../../models/playlistItem';
 import { YoutubeService } from '../../services/youtube';
 import { Subscription } from 'rxjs';
 
-import { GoogleAnalytics } from '@ionic-native/google-analytics';
-
 @Component({
   selector: "page-home",
   templateUrl: "home.html"
@@ -66,20 +64,10 @@ export class HomePage {
     private alertCtrl: AlertController,
     private platform: Platform,
     private network: Network,
-    private ga: GoogleAnalytics,
     private youtubeService: YoutubeService) { }
 
 
   ionViewWillEnter() {
-
-    this.ga.startTrackerWithId('UA-124225498-1')
-    .then(() => {
-      // console.log('Google analytics is ready now');
-        this.ga.trackView('home');
-      // Tracker is ready
-      // You can now track pages or set additional information such as AppVersion or UserId
-    })
-    .catch(e => console.log('Error starting GoogleAnalytics', e));
 
     this.fetchPlaylists();
 
@@ -194,9 +182,6 @@ export class HomePage {
         // Se encontrou algum filme
         if (this.randomItem) {
           this.hideLoading();
-
-          this.ga.trackEvent('Video', 'Sorteado', this.randomItem.title);
-
         // Se não encontrou filme nessa playlist busca novamente
         } else {
           this.getRandomMovie();
@@ -211,7 +196,6 @@ export class HomePage {
 
   // Página de detalhe
   onGoToDetalhe() {
-    this.ga.trackEvent('Video', 'Selecionado', this.randomItem.title);
     this.navCtrl.push(DetalhePage, { item: this.randomItem } );
   }
 
