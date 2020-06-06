@@ -10,7 +10,7 @@ import { Video } from '../models/video';
 export class YoutubeService {
 
   private channelId = 'UC2dAdLOJZiQsSFjcTsERsDA';
-  private apiKey = 'AIzaSyBftDhqCdhKRvul673QbydsBPoqwbvBui0';
+  private apiKey = 'AIzaSyC31oS_00ds1oCjwoJBUGdSEmMwna6eH0s';
 
   constructor(private http: Http) {}
 
