@@ -1,8 +1,7 @@
 # cineflix-brasil
 
 ## Pré requisitos
-Instalar npm versão LTS
-https://nodejs.org/en/
+Instalar npm versão 8.11.2
 
 Instalar ionic usando npm
 ```sh
