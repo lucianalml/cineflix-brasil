@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
 
-import { NavController, AlertController, Platform } from 'ionic-angular';
+import { NavController, AlertController } from 'ionic-angular';
 import { Network } from '@ionic-native/network';
 
 import { DetalhePage } from '../detalhe/detalhe';
@@ -62,7 +62,6 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
     private alertCtrl: AlertController,
-    private platform: Platform,
     private network: Network,
     private youtubeService: YoutubeService) { }
 
