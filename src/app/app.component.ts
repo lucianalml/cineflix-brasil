@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { SobrePage } from '../pages/sobre/sobre';
+import { TermosPage } from '../pages/termos/termos';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,6 +13,7 @@ import { SobrePage } from '../pages/sobre/sobre';
 export class MyApp {
   rootPage = HomePage;
   sobrePage = SobrePage;
+  termosPage = TermosPage;
 
   @ViewChild('nav') nav: NavController;
 
@@ -40,8 +42,21 @@ export class MyApp {
     }
   }
 
+  termosPageOpened() {
+    if (this.nav.getActive() )
+      return this.nav.getActive().name == 'TermosPage';
+    else {
+      return false;
+    }
+  }
+
   goToSobre(){
     this.nav.push(SobrePage);
   }
+
+  goToTermos(){
+    this.nav.push(TermosPage);
+  }
+
 }
 

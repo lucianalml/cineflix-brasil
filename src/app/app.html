@@ -6,6 +6,12 @@
 <ion-footer>
     <ion-toolbar>
         <ion-row>
+            <ion-col>
+                <button (click)="goToTermos()" ion-button clear [disabled]="termosPageOpened()" name="termos" id="termos">
+                    <div>Termos de uso</div>
+                </button>
+            </ion-col>
+
             <ion-col text-right>
                 <button (click)="goToSobre()" ion-button clear [disabled]="sobrePageOpened()" name="sobre" id="sobre">
                     <div>Sobre</div>

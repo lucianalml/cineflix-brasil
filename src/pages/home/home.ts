@@ -96,8 +96,8 @@ export class HomePage {
       },
       error => {
         this.clearData();
-        this.showAlert('Erro',
-          'Não foi possível buscar os filmes. Verifique sua internet e tente novamente.');
+        this.showAlert('Deu zica!',
+          'Iiihh não rolou buscar os filmes. Verifique sua internet e boa sorte!');
       }
     );
   }

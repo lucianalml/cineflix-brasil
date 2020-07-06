@@ -11,6 +11,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { DetalhePage } from '../pages/detalhe/detalhe';
 import { SobrePage } from '../pages/sobre/sobre';
+import { TermosPage } from '../pages/termos/termos';
 
 import { YoutubeService } from '../services/youtube';
 
@@ -22,6 +23,7 @@ import { YoutubePipe } from '../pipes/youtube/youtube';
     HomePage,
     DetalhePage,
     SobrePage,
+    TermosPage,
     YoutubePipe
   ],
   imports: [
@@ -34,7 +36,8 @@ import { YoutubePipe } from '../pipes/youtube/youtube';
     MyApp,
     HomePage,
     DetalhePage,
-    SobrePage
+    SobrePage,
+    TermosPage
   ],
   providers: [
     StatusBar,
